@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoneyLover", "PoneyLover\PoneyLover.csproj", "{6F3DA386-49D5-4A79-831E-2C884699E8F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoneyLover3.0", "PoneyLover3.0\PoneyLover3.0.csproj", "{EE22B8A7-2BE2-4A91-9AF4-D1B9ADA1633B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6F3DA386-49D5-4A79-831E-2C884699E8F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F3DA386-49D5-4A79-831E-2C884699E8F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F3DA386-49D5-4A79-831E-2C884699E8F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F3DA386-49D5-4A79-831E-2C884699E8F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE22B8A7-2BE2-4A91-9AF4-D1B9ADA1633B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE22B8A7-2BE2-4A91-9AF4-D1B9ADA1633B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE22B8A7-2BE2-4A91-9AF4-D1B9ADA1633B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE22B8A7-2BE2-4A91-9AF4-D1B9ADA1633B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

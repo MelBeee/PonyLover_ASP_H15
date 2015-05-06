@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de 
 // l’ensemble d’attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("PoneyLover")]
+[assembly: AssemblyTitle("PoneyLover3._0")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PoneyLover")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("clg")]
+[assembly: AssemblyProduct("PoneyLover3._0")]
+[assembly: AssemblyCopyright("Copyright © clg 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l’ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("05c3ae84-f04a-4dda-8398-a7f581438951")]
+[assembly: Guid("e52283bb-e178-43c8-9b6b-1e9a472ed39c")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //

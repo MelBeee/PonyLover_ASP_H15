@@ -40,3 +40,18 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.imagebanniere {
+    width:100%;
+    overflow:hidden;
+    background-size:cover;
+    min-height:300px;
+    margin-top: auto;
+}
+
+.jumbotron {
+    height:300px;
+    overflow:hidden;
+    background-size:cover;
+    background-image: url(/Images/Banner10.png); 
+}
