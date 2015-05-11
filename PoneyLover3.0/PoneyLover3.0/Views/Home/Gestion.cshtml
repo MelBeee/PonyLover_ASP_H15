@@ -1,46 +1,132 @@
 ﻿@{
-    ViewBag.Title = "Gestion";
+   ViewBag.Title = "Gestion";
 }
+
+<style>
+   img.resize {
+      width: 100px; /* you can use % */
+      height: auto;
+   }
+</style>
+
 <section id="login" style="padding-top: 0px">
-    <h1 style="text-align:center; font-size:50px;">Mon cheval</h1>
+   <h1 style="text-align:center; font-size:50px;">Mon cheval</h1>
 </section>
 
 <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
 
 <section id="login" style="padding-top: 15px">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="form-wrap">
+   <div class="container">
+      <div class="row">
+         <div class="col-xs-12">
+            <div class="form-wrap">
 
-                    <div class="col-xs-2 col-xs-12" style="margin-left: 10px">
-                        <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
-                            <div class="form-group">
-                                <input type="text" name="email" id="email" class="form-control" placeholder="Nom">
-                            </div>
-                            <div class="form-group">
-                                <textarea name="textarea" class="form-control" id="key" style="height:100px; resize:none;" placeholder="Description"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="key" id="key" class="form-control" placeholder="Emplacement">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="key" id="key" class="form-control" placeholder="Race">
-                            </div>
-                            <div class="form-group">
-                                <p>Discipline</p>
-                            </div>
-                            <div class="form-group">
-                                <p>Photo</p>
-                            </div>
-                            <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Enregistrer">
-                            <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Annuler">
-                        </form>
-                    </div>
-                </div>
+               <div class="col-xs-2 col-xs-12" style="margin-left: 10px">
+                  <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
+                     <div class="form-group">
+                        <input type="text" name="email" id="email" class="form-control" placeholder="Nom">
+                     </div>
+                     <div class="form-group">
+                        <textarea name="textarea" class="form-control" id="key" style="height:100px; resize:none;" placeholder="Description"></textarea>
+                     </div>
+                     <div class="form-group">
+                        <input type="text" name="key" id="key" class="form-control" placeholder="Emplacement">
+                     </div>
+                     <div class="form-group">
+                        <input type="text" name="key" id="key" class="form-control" placeholder="Race">
+                     </div>
+                     <section id="login" style="padding: 0px">
+                        <h1 style="text-align:center; font-size:20px;">Discipline</h1>
+                     </section>
+                     <div class="form-group">
+                        <div class="col-sm-12">
+                           <ul class="uldiscipline" style="margin-bottom: 0px;width: 340px; padding-left: 0px;">
+                              <li>
+                                 <input type="radio" name="group1" value="Milk" id="rad1">
+                                 <label for="rad1">Saut d'obstacle</label>
+                              </li>
+                              <li>
+                                 <input type="radio" name="group1" value="Milk" id="rad2">
+                                 <label for="rad2">Dressage</label>
+                              </li>
+                              <li>
+                                 <input type="radio" name="group1" value="Milk" id="rad3">
+                                 <label for="rad3">Gymkhana</label>
+                              </li>
+                              <li>
+                                 <input type="radio" name="group1" value="Milk" id="rad4">
+                                 <label for="rad4">Reining</label>
+                              </li>
+                              <li>
+                                 <input type="radio" name="group1" value="Milk" id="rad5">
+                                 <label for="rad5">Plaisance</label>
+                              </li>
+                              <li>
+                                 <input type="radio" name="group1" value="Milk" id="rad6">
+                                 <label for="rad6">Voltige</label>
+                              </li>
+                              <li>
+                                 <input type="radio" name="group1" value="Milk" id="rad7">
+                                 <label for="rad7">Polo</label>
+                              </li>
+                              <li>
+                                 <input type="radio" name="group1" value="Milk" id="rad8">
+                                 <label for="rad8">Attelage</label>
+                              </li>
+                           </ul>
+                        </div>
+
+                     </div>
+                     <section id="login" style="padding: 0px">
+                        <h1 style="text-align:center; font-size:20px;">Images</h1>
+                     </section>
+                     <div class="form-group" style="margin-bottom: 0px;width: 380px; padding-left: 0px;">
+                        <table>
+                           <tr>
+                              <td>
+                                 <input id="RB_Image1" type="radio" name="rdb" checked />
+                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px;" />
+                              </td>
+                              <td>
+                                 <input id="RB_Image2" type="radio" name="rdb" />
+                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px; " />
+                              </td>
+                              <td>
+                                 <input id="RB_Image3" type="radio" name="rdb" />
+                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px; " />
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <input id="RB_Image4" type="radio" name="rdb" />
+                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px; " />
+                              </td>
+                              <td>
+                                 <input id="RB_Image5" type="radio" name="rdb" />
+                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px; " />
+                              </td>
+                              <td>
+                                 <input id="RB_Image6" type="radio" name="rdb" />
+                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px; " />
+
+                              </td>
+                           </tr>
+                        </table>
+                        @using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                           <input type="file" name="FileUpload" />
+                        }
+
+                     </div>
+                     <br />
+                     <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Enregistrer">
+                     <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Annuler">
+                  </form>
+               </div>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 </section>
 
 <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />

@@ -127,3 +127,12 @@ input[type="checkbox"].input-validation-error {
 #footer a {
     color: inherit;
 }
+
+
+.uldiscipline {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  width: 500px;
+}
+
