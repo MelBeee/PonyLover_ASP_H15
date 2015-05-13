@@ -1,71 +1,152 @@
 ﻿@{
-   ViewBag.Title = "About";
+    ViewBag.Title = "About";
 }
+
 <style type="text/css">
-   .gallerycontainer {
-      position: relative;
-      /*Add a height attribute and set to largest image's height to prevent overlaying*/
-   }
+    #gallery {
+        width: 800px;
+        height: 300px;
+    }
 
-   .thumbnail1 img {
-      border: 1px solid white;
-      margin: 0 5px 5px 0;
-   }
+    #previous {
+        height: 100px;
+        width: 100px;
+        background-image: url(/Images/PreviousImage.png);
+    }
 
-   .thumbnail1:hover {
-      background-color: transparent;
-   }
+    #next {
+        height: 100px;
+        width: 100px;
+        background-image: url(/Images/NextPicture.png);
+    }
 
-   .thumbnail1:hover img {
-      border: 1px solid teal;
-   }
+    #gallery a b {
+        display: none;
+    }
 
-   .thumbnail1 span { /*CSS for enlarged image*/
-      position: absolute;
-      left: -1000px;
-      visibility: hidden;
-      color: black;
-      text-decoration: none;
-   }
+    #gallery #fullsize {
+        height: 300px;
+        width: 800px;
+        overflow: hidden;
+    }
 
-   .thumbnail1 span img { /*CSS for enlarged image*/
-      border-width: 0;
-      padding: 2px;
-   }
+    #gallery #fullsize div {
+        width: 500px;
+        height: 300px;
+    }
 
-   .thumbnail1:hover span { /*CSS for enlarged image*/
-      visibility: visible;
-      top: 0;
-      left: 230px; /*position where enlarged image should offset horizontally */
-      z-index: 50;
-   }
+    #gallery #fullsize div img {
+        clear: both;
+        display: block;
+        margin: 0 auto;
+        border: 0;
+    }
+
+    h2 {
+        font-weight: bolder;
+    }
+
+    h4 {
+        color: #1fa67b;
+        font-weight: bold;
+    }
 </style>
 
-
 <section id="login" style="padding-top: 0px">
-   <h1 style="text-align:center; font-size:50px;">Les Chevaux</h1>
+    <a style="height:100px; width:100px;" class="previous" href="#"></a> 
+    <h1 style="text-align:center; font-size:50px;">Les Chevaux</h1> 
+    <a style="height:100px; width:100px;" class="next" href="#"></a>
 </section>
 
 <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
 
 
-<div class="gallerycontainer">
+<div class="container" style="width:500px; text-align:center;">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-wrap">
+                <div class="col-xs-2 col-xs-12" style="margin-left: 10px">
+                    <div id="gallery">
+                        <div id="fullsize">
+                            <div id="pic1">
+                                <table>
+                                    <tr>
+                                        <td style="width:100px;"><a id="previous" href="#pic6"><b>Previous</b></a></td>
+                                        <td><img class="image" src="..\\..\\Images\BasePicture.png" alt="Photo1" height="300" width="500" /></td>
+                                        <td style="width:100px;"><a id="next" href="#pic2"><b>Next</b></a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="pic2">
+                                <table>
+                                    <tr>
+                                        <td style="width:100px;"><a id="previous" href="#pic1"><b>Previous</b></a></td>
+                                        <td><img class="image" src="..\\..\\Images\Banner5.png" alt="Photo2" height="300" width="500" /></td>
+                                        <td style="width:100px;"><a id="next" href="#pic3"><b>Next</b></a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="pic3">
+                                <table>
+                                    <tr>
+                                        <td style="width:100px;"><a id="previous" href="#pic2"><b>Previous</b></a></td>
+                                        <td><img class="image" src="..\\..\\Images\Banner4.png" alt="Photo3" height="300" width="500" /></td>
+                                        <td style="width:100px;"><a id="next" href="#pic4"><b>Next</b></a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="pic4">
+                                <table>
+                                    <tr>
+                                        <td style="width:100px;"><a id="previous" href="#pic3"><b>Previous</b></a></td>
+                                        <td><img class="image" src="..\\..\\Images\Banner3.png" alt="Photo4" height="300" width="500" /></td>
+                                        <td style="width:100px;"><a id="next" href="#pic5"><b>Next</b></a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="pic5">
+                                <table>
+                                    <tr>
+                                        <td style="width:100px;"><a id="previous" href="#pic4"><b>Previous</b></a></td>
+                                        <td><img class="image" src="..\\..\\Images\Banner2.png" alt="Photo5" height="300" width="500" /></td>
+                                        <td style="width:100px;"><a id="next" href="#pic6"><b>Next</b></a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="pic6">
+                                <table>
+                                    <tr>
+                                        <td style="width:100px;"><a id="previous" href="#pic5"><b>Previous</b></a></td>
+                                        <td><img class="image" src="..\\..\\Images\Banner1.png" alt="Photo6" height="300" width="500" /></td>
+                                        <td style="width:100px;"><a id="next" href="#pic1"><b>Next</b></a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Holly Barbie Girl</h2>
+                    <p style="text-align:justify;">
+                        Le cheval de race Karabair est originaire de l'Ouzbékistan et du nord du Tadjikistan.
+                        C'est une race de cheval de selle.
+                        On retrouve le cheval Karabair (en Ouzbékistan) aussi sous le nom de Karabairskaya (en Russie) et Qarabair (en Tadjik).
+                        La race de cheval Karabair est une race très ancienne.
+                        Son apparition daterait d'avant l'ère chrétienne mais rien ne permet réellement de l'assurer.
+                    </p>
+                    <h4>Race</h4>
+                    <p class="">Karabair&nbsp;</p>
+                    <h4>Discipline</h4>
+                    <p class="">Jeux équestres&nbsp;</p>
+                    <h4>Propriétaire</h4>
+                    <p class="">Mélissa Boucher&nbsp;</p>
+                    <h4>Emplacement</h4>
+                    <p class="">Institut Western MDG&nbsp;</p>
 
-   <a class="thumbnail1" href="#thumb"><img src="..\\..\\Images\BasePicture.png" width="100" height="100" border="0" /><span><img width="400" height="400" src="..\\..\\Images\BasePicture.png" /></span></a>
-
-   <a class="thumbnail1" href="#thumb"><img src="..\\..\\Images\BasePicture.png" width="100" height="100" border="0" /><span><img width="400" height="400" src="..\\..\\Images\BasePicture.png" /></span></a>
-
-   <br />
-
-   <a class="thumbnail1" href="#thumb"><img src="..\\..\\Images\BasePicture.png" width="100" height="100" border="0" /><span><img width="400" height="400" src="..\\..\\Images\BasePicture.png" /></span></a>
-
-   <a class="thumbnail1" href="#thumb"><img src="..\\..\\Images\BasePicture.png" width="100" height="100" border="0" /><span><img width="400" height="400" src="..\\..\\Images\BasePicture.png" /></span></a>
-
-   <br />
-
-   <a class="thumbnail1" href="#thumb"><img src="..\\..\\Images\BasePicture.png" width="100" height="100" border="0" /><span><img width="400" height="400" src="..\\..\\Images\BasePicture.png" /></span></a>
-
-   <a class="thumbnail1" href="#thumb"><img src="..\\..\\Images\BasePicture.png" width="100" height="100" border="0" /><span><img width="400" height="400" src="..\\..\\Images\BasePicture.png" /></span></a>
-
-   <br />
+                  
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
