@@ -45,6 +45,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
                     <li>@Html.ActionLink("Galerie", "About", "Home")</li>
+                     @if (Session["Username"] != null) {
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Gestion
@@ -57,6 +58,11 @@
                             <li>@Html.ActionLink("Cheval3", "Gestion", "Home")</li>
                         </ul>
                     </li>
+                     }
+                     else
+                     {
+                        <li>@Html.ActionLink("Inscription","Contact","Home")</li>
+                     }
                 </ul>
             </div>
         </div>
@@ -68,6 +74,17 @@
 
         @RenderBody()
     </div>
+
+   <div class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container">
+         <div class="navbar-header">
+            @if (Session["Username"] != null) {
+               <p><h3 style="color:white;">Connecté en tant que </h3></p>
+            }
+         </div>
+      </div>
+   </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

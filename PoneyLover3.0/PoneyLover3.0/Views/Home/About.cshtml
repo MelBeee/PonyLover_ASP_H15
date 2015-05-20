@@ -3,45 +3,6 @@
 }
 
 <style type="text/css">
-    #gallery {
-        width: 800px;
-        height: 300px;
-    }
-
-    #previous {
-        height: 100px;
-        width: 100px;
-        background-image: url(/Images/PreviousImage.png);
-    }
-
-    #next {
-        height: 100px;
-        width: 100px;
-        background-image: url(/Images/NextPicture.png);
-    }
-
-    #gallery a b {
-        display: none;
-    }
-
-    #gallery #fullsize {
-        height: 300px;
-        width: 800px;
-        overflow: hidden;
-    }
-
-    #gallery #fullsize div {
-        width: 500px;
-        height: 300px;
-    }
-
-    #gallery #fullsize div img {
-        clear: both;
-        display: block;
-        margin: 0 auto;
-        border: 0;
-    }
-
     h2 {
         font-weight: bolder;
     }
@@ -50,12 +11,17 @@
         color: #1fa67b;
         font-weight: bold;
     }
+
 </style>
 
 <section id="login" style="padding-top: 0px">
-    <a style="height:100px; width:100px;" class="previous" href="#"></a> 
-    <h1 style="text-align:center; font-size:50px;">Les Chevaux</h1> 
-    <a style="height:100px; width:100px;" class="next" href="#"></a>
+   <table style="margin:auto;">
+      <tr>
+         <td><div><a href ="" onclick="PrecedantCheval('');" id="previoushorse"><img width=70 src="..\\..\\Images\PreviousImage.png" alt="Precedent"></a></div></td>
+         <td><h1 style="text-align:center; font-size:50px; padding-left:100px; padding-right:100px;">Les Chevaux</h1></td>
+         <td><div><a href="" onclick="SuivantCheval('');" id="nexthorse"><img width=70 src="..\\..\\Images\NextPicture.png" alt="Suivant"></a></div></td>
+      </tr>
+   </table>
 </section>
 
 <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
@@ -65,65 +31,16 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="form-wrap">
-                <div class="col-xs-2 col-xs-12" style="margin-left: 10px">
-                    <div id="gallery">
-                        <div id="fullsize">
-                            <div id="pic1">
-                                <table>
-                                    <tr>
-                                        <td style="width:100px;"><a id="previous" href="#pic6"><b>Previous</b></a></td>
-                                        <td><img class="image" src="..\\..\\Images\BasePicture.png" alt="Photo1" height="300" width="500" /></td>
-                                        <td style="width:100px;"><a id="next" href="#pic2"><b>Next</b></a></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div id="pic2">
-                                <table>
-                                    <tr>
-                                        <td style="width:100px;"><a id="previous" href="#pic1"><b>Previous</b></a></td>
-                                        <td><img class="image" src="..\\..\\Images\Banner5.png" alt="Photo2" height="300" width="500" /></td>
-                                        <td style="width:100px;"><a id="next" href="#pic3"><b>Next</b></a></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div id="pic3">
-                                <table>
-                                    <tr>
-                                        <td style="width:100px;"><a id="previous" href="#pic2"><b>Previous</b></a></td>
-                                        <td><img class="image" src="..\\..\\Images\Banner4.png" alt="Photo3" height="300" width="500" /></td>
-                                        <td style="width:100px;"><a id="next" href="#pic4"><b>Next</b></a></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div id="pic4">
-                                <table>
-                                    <tr>
-                                        <td style="width:100px;"><a id="previous" href="#pic3"><b>Previous</b></a></td>
-                                        <td><img class="image" src="..\\..\\Images\Banner3.png" alt="Photo4" height="300" width="500" /></td>
-                                        <td style="width:100px;"><a id="next" href="#pic5"><b>Next</b></a></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div id="pic5">
-                                <table>
-                                    <tr>
-                                        <td style="width:100px;"><a id="previous" href="#pic4"><b>Previous</b></a></td>
-                                        <td><img class="image" src="..\\..\\Images\Banner2.png" alt="Photo5" height="300" width="500" /></td>
-                                        <td style="width:100px;"><a id="next" href="#pic6"><b>Next</b></a></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div id="pic6">
-                                <table>
-                                    <tr>
-                                        <td style="width:100px;"><a id="previous" href="#pic5"><b>Previous</b></a></td>
-                                        <td><img class="image" src="..\\..\\Images\Banner1.png" alt="Photo6" height="300" width="500" /></td>
-                                        <td style="width:100px;"><a id="next" href="#pic1"><b>Next</b></a></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-xs-2 col-xs-12" >
+                   <div class="picgallerie">
+                      <table>
+                         <tr>
+                            <td><div><a href="" onclick="PrecedantPhoto('');" id="previous"><img width=50 src="..\\..\\Images\PreviousImage.png" alt="Precedent"></a></div></td>
+                            <td><img class="image" src="..\\..\\Images\BasePicture.png" alt="Photo1" width="500"></td>
+                            <td><div><a href="" onclick="SuivantPhoto('');" id="next"><img width=50 src="..\\..\\Images\NextPicture.png" alt="Suivant"></a></div></td>
+                         </tr>
+                      </table>
+                   </div>
                     <h2>Holly Barbie Girl</h2>
                     <p style="text-align:justify;">
                         Le cheval de race Karabair est originaire de l'Ouzbékistan et du nord du Tadjikistan.
@@ -133,13 +50,13 @@
                         Son apparition daterait d'avant l'ère chrétienne mais rien ne permet réellement de l'assurer.
                     </p>
                     <h4>Race</h4>
-                    <p class="">Karabair&nbsp;</p>
+                    <p class="">Quarter Horse</p>
                     <h4>Discipline</h4>
-                    <p class="">Jeux équestres&nbsp;</p>
+                    <p class="">Reining</p>
                     <h4>Propriétaire</h4>
-                    <p class="">Mélissa Boucher&nbsp;</p>
+                    <p class="">Mélissa Boucher</p>
                     <h4>Emplacement</h4>
-                    <p class="">Institut Western MDG&nbsp;</p>
+                    <p class="">Institut Western MDG</p>
 
                   
                 </div>
