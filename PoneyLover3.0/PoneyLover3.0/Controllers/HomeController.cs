@@ -11,7 +11,6 @@ namespace PoneyLover3._0.Controllers
    {
       public ActionResult Index()
       {
-
          return View();
       }
 
