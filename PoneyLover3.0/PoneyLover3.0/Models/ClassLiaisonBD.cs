@@ -112,9 +112,9 @@ namespace PoneyLover3._0.Models
       public static bool UpdateCheval(int ID, string Nom, string Description, string Emplacement, string Race, string Discipline, string NomUsager, SqlConnection conn)
       {
          bool resultat = false;
-         int ID = GetIDUsager(conn, NomUsager);
+         int IDUsager = GetIDUsager(conn, NomUsager);
 
-         if (ID != -1)
+         if (IDUsager != -1)
          {
             SqlCommand sql = new SqlCommand(" update cheval set nom = '" + Nom + "', "
                                                             + " description = '" + Description + "', " 
