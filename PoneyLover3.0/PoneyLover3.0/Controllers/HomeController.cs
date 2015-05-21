@@ -14,7 +14,7 @@ namespace PoneyLover3._0.Controllers
          return View();
       }
 
-      public ActionResult About()
+      public ActionResult LesChevaux()
       {
          return View();
       }
