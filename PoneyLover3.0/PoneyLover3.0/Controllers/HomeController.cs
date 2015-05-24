@@ -16,53 +16,51 @@ namespace PoneyLover3._0.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string TB_Username, string TB_Password)
+        public ActionResult Index(string TB_Username, string TB_Password, string TB_UsernameRemind, string btn_login, string btn_send)
         {
             SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
-            bool connexionreussite = true;
-            if(TB_Username == "" || TB_Password == "")
+            if(!string.IsNullOrWhiteSpace(btn_login))
             {
-                ViewBag.ErrorTBVide = "Tout les champs doivent être remplis";
-                connexionreussite = false; 
-            }
-            if (!Models.ClassLiaisonBD.VerifierConnexion(TB_Username, TB_Password, conn))
-            {
-                ViewBag.ErrorConnexion = "Informations invalides. ";
-                connexionreussite = false;
-            }
+                bool connexionreussite = true;
+                if (TB_Username == "" || TB_Password == "")
+                {
+                    ViewBag.ErrorTBVide = "Tout les champs doivent être remplis";
+                    connexionreussite = false;
+                }
+                if (!Models.ClassLiaisonBD.VerifierConnexion(TB_Username, TB_Password, conn))
+                {
+                    ViewBag.ErrorConnexion = "Informations invalides. ";
+                    connexionreussite = false;
+                }
 
-            if(connexionreussite)
+                if (connexionreussite)
+                {
+                    Session["UserValid"] = true;
+                    Session["Username"] = TB_Username;
+                }
+            }
+            else if (!string.IsNullOrWhiteSpace(btn_send))
             {
-                Session["UserValid"] = true;
-                Session["Username"] = TB_Username;
+                bool envoitreussi = true;
+
+                if (TB_UsernameRemind == "")
+                {
+                    envoitreussi = false;
+                    ViewBag.ErreurVide = "Tout les champs doivent être remplis";
+                }
+                if (!Models.ClassLiaisonBD.NomUsagerExiste(TB_UsernameRemind, conn))
+                {
+                    envoitreussi = false;
+                    ViewBag.ErreurUsername = "Informations invalides.";
+                }
+
+                if (envoitreussi)
+                {
+                    ViewBag.Reussi = "Un message a été envoyé à votre adresse courriel.";
+                }
             }
 
             return View(); 
-        }
-
-        [HttpPost]
-        public ActionResult Index(string TB_UsernameRemind)
-        {
-            SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
-            bool envoitreussi = true;
-
-            if (TB_UsernameRemind == "")
-            {
-                envoitreussi = false;
-                ViewBag.ErreurVide = "Tout les champs doivent être remplis";
-            }
-            if (!Models.ClassLiaisonBD.NomUsagerExiste(TB_UsernameRemind, conn))
-            {
-                envoitreussi = false;
-                ViewBag.ErreurUsername = "Informations invalides.";
-            }
-
-            if(envoitreussi)
-            {
-                ViewBag.Reussi = "Un message a été envoyé à votre adresse courriel.";
-            }
-
-            return View();
         }
 
         public ActionResult About()
