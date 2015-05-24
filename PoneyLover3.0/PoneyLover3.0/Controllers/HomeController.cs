@@ -77,7 +77,7 @@ namespace PoneyLover3._0.Controllers
         {
             Session["UserValid"] = false;
             Session["Username"] = "";
-            return RedirectToAction("Index", "Home"); ;
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
