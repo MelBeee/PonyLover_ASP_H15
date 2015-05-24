@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    <title>Accueil</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style type="text/css">
@@ -45,7 +45,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
                     <li>@Html.ActionLink("Galerie", "About", "Home")</li>
-                     @if (Session["Username"] != null) {
+                     @if (Session["Username"] != "") {
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Gestion
@@ -53,11 +53,13 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Nouveau cheval", "Gestion", "Home")</li>
+                            @* for each cheval dans la table *@
                             <li>@Html.ActionLink("Cheval1", "Gestion", "Home")</li>
                             <li>@Html.ActionLink("Cheval2", "Gestion", "Home")</li>
                             <li>@Html.ActionLink("Cheval3", "Gestion", "Home")</li>
                         </ul>
                      </li>
+                     <li>@Html.ActionLink("Deconnection", "Deconnection", "Home")</li>    
                      }
                      else
                      {
@@ -78,8 +80,9 @@
    <div class="navbar navbar-inverse navbar-fixed-bottom">
       <div class="container">
          <div class="navbar-header">
-            @if (Session["Username"] != null) {
-               <p><h3 style="color:white;">Connecté en tant que </h3></p>
+            @if ((bool)Session["UserValid"])
+            {
+               <p><h3 style="color:white;">Connecté en tant que @((string)Session["Username"])</h3></p>
             }
          </div>
       </div>

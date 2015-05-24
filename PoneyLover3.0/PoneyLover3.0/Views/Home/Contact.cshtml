@@ -1,46 +1,68 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
+﻿@using (Html.BeginForm())
+{
+    <section id="login" style="padding-top: 0px">
+        <h1 style="text-align:center; font-size:50px;">Inscription</h1>
+    </section>
 
-<section id="login" style="padding-top: 0px">
-    <h1 style="text-align:center; font-size:50px;">Inscription</h1>
-</section>
+    <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
 
-<hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
-
-<section id="login" style="padding-top: 15px">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="form-wrap">
-                    <div class="col-xs-2 col-xs-12" style="margin-left: 10px">
-                        <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
-                            <div class="form-group">
-                                <input type="text" name="email" id="email" class="form-control" placeholder="Nom d'usager">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="key" id="key" class="form-control" placeholder="Nom complet">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="key" id="key" class="form-control" placeholder="Mot de passe">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="key" id="key" class="form-control" placeholder="Confirmation du mot de passe">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" name="key" id="key" class="form-control" placeholder="Adresse courriel">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" name="key" id="key" class="form-control" placeholder="Confirmation de l'adresse courriel">
-                            </div>
-                            <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="S'enregistrer">
-                            <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Annuler">
-                        </form>
+    <section id="login" style="padding-top: 15px">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-wrap">
+                        <div class="col-xs-2 col-xs-12" style="margin-left: 10px">
+                            <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
+                                @if (ViewBag.Reussi != "")
+                                {
+                                    <label style="color:green; font-size:15px;">@ViewBag.Reussi</label>
+                                }
+                                @if (ViewBag.NonReussi != "")
+                                {
+                                    <label style="color: red; font-size: 15px;">@ViewBag.NonReussi</label>
+                                }
+                                @if (ViewBag.ErrorMDP != "")
+                                {
+                                    <label style="color: red; font-size: 15px;">@ViewBag.ErrorMDP</label>
+                                }
+                                @if (ViewBag.ErrorEmail != "")
+                                {
+                                    <label style="color: red; font-size: 15px;">@ViewBag.ErrorEmail</label>
+                                }
+                                @if (ViewBag.ErrorTBVide != "")
+                                {
+                                    <label style="color: red; font-size: 15px;">@ViewBag.ErrorTBVide</label>
+                                }
+                                @if (ViewBag.NomUtilise != "")
+                                {
+                                    <label style="color: red; font-size: 15px;">@ViewBag.NomUtilise</label>
+                                }
+                                <div class="form-group">
+                                    @Html.TextBox("TB_Username", null, new { @class = "form-control", @placeholder = "Nom d'usager" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBox("TB_Fullname", null, new { @class = "form-control", @placeholder = "Nom complet" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBox("TB_Password", null, new { @class = "form-control", @placeholder = "Mot de passe", @Type = "password" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBox("TB_PasswordConfirm", null, new { @class = "form-control", @placeholder = "Confirmation du mot de passe", @Type = "password" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBox("TB_Email", null, new { @class = "form-control", @placeholder = "Adresse courriel", @Type = "email" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBox("TB_EmailConfirm", null, new { @class = "form-control", @placeholder = "Confirmation de l'adresse courriel", @Type = "email" })
+                                </div>
+                                <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="S'enregistrer">
+                            </form> 
+                        </div>
                     </div>
                 </div>
-            </div> 
-        </div> 
-    </div> 
-</section>
+            </div>
+        </div>
+    </section>
 
-<hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
+    <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
+}

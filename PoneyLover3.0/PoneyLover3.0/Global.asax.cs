@@ -17,5 +17,13 @@ namespace PoneyLover3._0
          RouteConfig.RegisterRoutes(RouteTable.Routes);
          BundleConfig.RegisterBundles(BundleTable.Bundles);
       }
+
+      protected void Session_Start()
+      {
+          Session["UserValid"] = false;
+          Session["Username"] = "";
+          string DB_Path = Server.MapPath(@"~\App_Data\DBPony.mdf");
+          Session["DBPony"] = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='" + DB_Path + "'; Integrated Security=true";
+      }
    }
 }
