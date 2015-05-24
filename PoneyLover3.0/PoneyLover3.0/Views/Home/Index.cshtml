@@ -1,4 +1,11 @@
-﻿@using (Html.BeginForm())
+﻿@functions{
+    public void SendEmail()
+    {
+
+    }
+}
+
+@using (Html.BeginForm())
 {
     <section id="login" style="padding-top: 0px">
         <h1 style="text-align:center; font-size:50px;">Accueil</h1>
@@ -22,7 +29,6 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-wrap">
-
                             <h1 style="text-align:center; font-size:30px;">Connexion</h1>
                             <div class="col-xs-2 col-xs-12" style="margin-left: 10px">
                                 <form role="form" action="Login" method="post" id="login-form" autocomplete="off">
@@ -35,10 +41,10 @@
                                         <label style="color: red; font-size: 15px;">@ViewBag.ErrorTBVide</label>
                                     }
                                     <div class="form-group">
-                                        @Html.TextBox("TB_Username", null, new { @class = "form-control", @placeholder = "Nom d'usager" })
+                                        @Html.TextBox("TB_Username", null, new { maxlength = 20, @class = "form-control", @placeholder = "Nom d'usager" })
                                     </div>
                                     <div class="form-group">
-                                        @Html.TextBox("TB_Password", null, new { @class = "form-control", @placeholder = "Mot de passe", @Type = "password" })
+                                        @Html.TextBox("TB_Password", null, new { maxlength = 20, @class = "form-control", @placeholder = "Mot de passe", @Type = "password" })
                                     </div>
                                     <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Se connecter">
                                 </form>
@@ -56,13 +62,27 @@
                     <div class="modal-header" style="text-align:center;">
                         <h4 class="modal-title">Retrouver son mot de passe</h4>
                     </div>
-                    <div class="modal-body">
-                        @Html.TextBox("TB_UsernameRemind", null, new { @class = "form-control", @placeholder = "Nom d'usager", @Type = "text" })
-                    </div>
-                    <div class="modal-footer" style="text-align:center;">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-custom">Envoyer</button>
-                    </div>
+
+                        @if (ViewBag.Reussi != "")
+                        {
+                            <label style="color:green; font-size:15px;">@ViewBag.Reussi</label>
+                        }
+                        @if (ViewBag.ErreurVide != "")
+                        {
+                            <label style="color: red; font-size: 15px;">@ViewBag.ErreurVide</label>
+                        }
+                        @if (ViewBag.ErreurUsername != "")
+                        {
+                            <label style="color: red; font-size: 15px;">@ViewBag.ErreurUsername</label>
+                        }
+                        <div class="modal-body">
+                            @Html.TextBox("TB_UsernameRemind", null, new { @class = "form-control", @placeholder = "Nom d'usager", @Type = "text" })
+                        </div>
+                        <div class="modal-footer" style="text-align:center;">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-custom">Envoyer</button>
+                        </div>
+
                 </div>
             </div>
         </div>

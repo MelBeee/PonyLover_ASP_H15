@@ -38,22 +38,22 @@
                                     <label style="color: red; font-size: 15px;">@ViewBag.NomUtilise</label>
                                 }
                                 <div class="form-group">
-                                    @Html.TextBox("TB_Username", null, new { @class = "form-control", @placeholder = "Nom d'usager" })
+                                    @Html.TextBox("TB_Username", null, new { maxlength = 20, @class = "form-control", @placeholder = "Nom d'usager" })
                                 </div>
                                 <div class="form-group">
-                                    @Html.TextBox("TB_Fullname", null, new { @class = "form-control", @placeholder = "Nom complet" })
+                                    @Html.TextBox("TB_Fullname", null, new { maxlength = 50, @class = "form-control", @placeholder = "Nom complet" })
                                 </div>
                                 <div class="form-group">
-                                    @Html.TextBox("TB_Password", null, new { @class = "form-control", @placeholder = "Mot de passe", @Type = "password" })
+                                    @Html.TextBox("TB_Password", null, new { maxlength = 20, @class = "form-control", @placeholder = "Mot de passe", @Type = "password" })
                                 </div>
                                 <div class="form-group">
-                                    @Html.TextBox("TB_PasswordConfirm", null, new { @class = "form-control", @placeholder = "Confirmation du mot de passe", @Type = "password" })
+                                    @Html.TextBox("TB_PasswordConfirm", null, new { maxlength = 20, @class = "form-control", @placeholder = "Confirmation du mot de passe", @Type = "password" })
                                 </div>
                                 <div class="form-group">
-                                    @Html.TextBox("TB_Email", null, new { @class = "form-control", @placeholder = "Adresse courriel", @Type = "email" })
+                                    @Html.TextBox("TB_Email", null, new { maxlength = 75, @class = "form-control", @placeholder = "Adresse courriel", @Type = "email" })
                                 </div>
                                 <div class="form-group">
-                                    @Html.TextBox("TB_EmailConfirm", null, new { @class = "form-control", @placeholder = "Confirmation de l'adresse courriel", @Type = "email" })
+                                    @Html.TextBox("TB_EmailConfirm", null, new { maxlength = 75, @class = "form-control", @placeholder = "Confirmation de l'adresse courriel", @Type = "email" })
                                 </div>
                                 <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="S'enregistrer">
                             </form> 
