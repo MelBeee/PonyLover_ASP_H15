@@ -157,7 +157,7 @@ namespace PoneyLover3._0.Models
         {
             string mdp = "";
 
-            SqlCommand sql = new SqlCommand("select password from Usager where NomUsager = '" + Username + "'");
+            SqlCommand sql = new SqlCommand("select motdepasse from Usager where NomUsager = '" + Username + "'");
             sql.Connection = conn;
             conn.Open();
 
@@ -177,7 +177,7 @@ namespace PoneyLover3._0.Models
         {
             string email = "";
 
-            SqlCommand sql = new SqlCommand("select email from Usager where NomUsager = '" + Username + "'");
+            SqlCommand sql = new SqlCommand("select adressecourriel from Usager where NomUsager = '" + Username + "'");
             sql.Connection = conn;
             conn.Open();
 
