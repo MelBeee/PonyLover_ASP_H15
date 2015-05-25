@@ -120,6 +120,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ClassLiaisonBD.cs" />
+    <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Gestion.cshtml" />
     <Content Include="Views\Home\Deconnection.cshtml" />
+    <Content Include="Views\Shared\Partial1.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
