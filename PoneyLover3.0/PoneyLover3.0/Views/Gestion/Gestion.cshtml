@@ -4,6 +4,23 @@
       height: auto;
    }
 </style>
+<script>
+    function PreLoadImage(ElementPhoto) {
+        var imageTarget = document.getElementById(ElementPhoto);
+        var input = document.getElementById("FileUpload");
+        if (imageTarget != null) {
+            var fReader = new FileReader();
+            fReader.readAsDataURL(input.files[0]);
+            fReader.onloadend = function (event) {
+                // the event.target.result contains the image data
+                imageTarget.src = event.target.result;
+
+            }
+        }
+        return true;
+    }
+
+</script>
 
 <section id="login" style="padding-top: 0px">
    <h1 style="text-align:center; font-size:50px;">Mon cheval</h1>
@@ -85,45 +102,27 @@
                         <h1 style="text-align:center; font-size:20px;">Images</h1>
                      </section>
                      <div class="form-group" style="margin-bottom: 0px;width: 380px; padding-left: 0px;">
-                        <table>
+                         @using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                         {
+                         <table>
                            <tr>
                               <td>
-                                 <input id="RB_Image1" type="radio" name="rdb" checked />
-                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px;" />
+                                  <img src="..\\..\\Images\BasePicture.png" id="Image1" alt="+" style="height: 100px; width: 100px;" />
+                                  <input type="file" name="FileUpload" onchange="PreLoadImage(Image1)"/>
                               </td>
-                              <td>
-                                 <input id="RB_Image2" type="radio" name="rdb" />
-                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px; " />
+                              <td>                                  
+                                  <img src="..\\..\\Images\BasePicture.png" id="Image2" alt="+" style="height: 100px; width: 100px; " />
+                                  <input type="file" name="FileUpload" onchange="PreLoadImage(Image2)" />
                               </td>
-                              <td>
-                                 <input id="RB_Image3" type="radio" name="rdb" />
-                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px; " />
+                              <td>                                  
+                                  <img src="..\\..\\Images\BasePicture.png" id="Image3" alt="+" style="height: 100px; width: 100px; " />
+                                  <input type="file" name="FileUpload" onchange="PreLoadImage(Image3)" />
                               </td>
-                           </tr>
-                           <tr>
-                              <td>
-                                 <input id="RB_Image4" type="radio" name="rdb" />
-                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px; " />
-                              </td>
-                              <td>
-                                 <input id="RB_Image5" type="radio" name="rdb" />
-                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px; " />
-                              </td>
-                              <td>
-                                 <input id="RB_Image6" type="radio" name="rdb" />
-                                 <img src="..\\..\\Images\BasePicture.png" alt="+" style="height: 100px; width: 100px; " />
-
-                              </td>
-                           </tr>
-                        </table>
-                        @using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                           <input type="file" name="FileUpload" />
+                           </tr>                         
+                        </table>                        
                         }
-
                      </div>
-                     <br />
-                  
+                     <br />                  
                      <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Enregistrer">
                      <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Annuler">                                   
                </div>

@@ -18,7 +18,7 @@ namespace PoneyLover3._0.Controllers
         }
 
       [HttpPost]
-      public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1)
+      public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1,String )
 		{
 			SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
          if (TB_Nom != "" && TB_Description != "" && TB_Emplacement != "" && TB_Race != "" && rad1 != "" && Session["UserName"].ToString() != "")
@@ -28,10 +28,7 @@ namespace PoneyLover3._0.Controllers
 				{
 					ViewBag.Reussi = "Cheval enregistrer !";
 
-               for (int i = 0; i < 6; i++ )
-               {
-                  
-               }
+               Models.ClassLiaisonBD.InsertionImageCheval()
 
 
                ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
