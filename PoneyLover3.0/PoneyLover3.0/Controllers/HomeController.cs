@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PoneyLover3._0.Models;
 
 namespace PoneyLover3._0.Controllers
 {
@@ -12,7 +13,7 @@ namespace PoneyLover3._0.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+           return View(new ImageModel());
         }
 
         [HttpPost]
@@ -60,17 +61,17 @@ namespace PoneyLover3._0.Controllers
                 }
             }
 
-            return View(); 
+            return View(new ImageModel()); 
         }
 
         public ActionResult About()
         {
-            return View();
+           return View(new ImageModel());
         }
 
         public ActionResult Contact()
         {
-            return View();
+           return View(new ImageModel());
         }
 
         public ActionResult Deconnection()
@@ -122,12 +123,12 @@ namespace PoneyLover3._0.Controllers
                     ViewBag.NonReussi = "Erreur dans l'inscription !";
                 }
             }
-            return View();
+            return View(new ImageModel());
         }
 
         public ActionResult Gestion()
         {
-            return View();
+           return View(new ImageModel());
         }
 
         [HttpPost]
@@ -141,6 +142,16 @@ namespace PoneyLover3._0.Controllers
             }
 
             return RedirectToAction("UploadDocument");
+        }
+
+        public PartialViewResult ShowImage()
+        {
+           return PartialView("Partial1", new ImageModel());
+        }
+
+        public ActionResult Partial1()
+        {
+           return PartialView("Partial1", new ImageModel());
         }
     }
 }
