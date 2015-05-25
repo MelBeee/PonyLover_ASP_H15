@@ -15,7 +15,10 @@ namespace PoneyLover3._0.Controllers
     {
         public ActionResult Gestion()
         {
-           int foo = 1;
+           if (Session["Username"] == "" && !(bool)Session["UserValid"])
+           {
+              return RedirectToAction("Index", "Home");
+           }
            return View(new ImageModel());
         }
 
