@@ -10,19 +10,20 @@ namespace PoneyLover3._0.Controllers
 {
     public class GestionController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Gestion()
         {
+           int foo = 1;
             return View();
         }
 
-
-		public ActionResult Enregistrer(String nom, String description, String emplacement, String race, String discipline)
+      [HttpPost]
+      public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1)
 		{
 			SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
-			if (nom != "" && description != "" && emplacement != "" && race != "" && discipline != "" && Session["UserName"].ToString() !="")
+         if (TB_Nom != "" && TB_Description != "" && TB_Emplacement != "" && TB_Race != "" && rad1 != "" && Session["UserName"].ToString() != "")
 			{
 
-				if (Models.ClassLiaisonBD.InsertionCheval(nom, description, emplacement, race, discipline, Session["UserName"].ToString(), conn))
+            if (Models.ClassLiaisonBD.InsertionCheval(TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
 				{
 					ViewBag.Reussi = "Cheval enregistrer !";
 				}

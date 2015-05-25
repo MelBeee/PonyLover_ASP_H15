@@ -1,8 +1,4 @@
-﻿@{
-   ViewBag.Title = "Gestion";
-}
-
-<style>
+﻿<style>
    img.resize {
       width: 100px; /* you can use % */
       height: auto;
@@ -12,7 +8,6 @@
 <section id="login" style="padding-top: 0px">
    <h1 style="text-align:center; font-size:50px;">Mon cheval</h1>
 </section>
-
 <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
 
 <section id="login" style="padding-top: 15px">
@@ -20,20 +15,20 @@
       <div class="row">
          <div class="col-xs-12">
             <div class="form-wrap">
-
+               @using (Html.BeginForm("Gestion", "GestionController", FormMethod.Post, new { enctype = "multipart/form-data" }))
+               {
                <div class="col-xs-2 col-xs-12" style="margin-left: 10px">
-                  <form role="form" action="Enregistrer;" method="post" id="login-form" autocomplete="off">
-                     <div class="form-group">
-                        <input type="text" name="email" id="email" class="form-control" placeholder="Nom">
+                                     <div class="form-group">                     
+                         @Html.TextBox("TB_Nom", null, new { maxlength = 20, @class = "form-control", @placeholder = "Nom du cheval" })
+                     </div>
+                     <div class="form-group">                      
+                         @Html.TextBox("TB_Description", null, new { maxlength = 200, @class = "form-control", @placeholder = "Description" })
+                     </div>
+                     <div class="form-group">                       
+                         @Html.TextBox("TB_Emplacement", null, new { maxlength = 20, @class = "form-control", @placeholder = "Emplacement du cheval" })
                      </div>
                      <div class="form-group">
-                        <textarea name="textarea" class="form-control" id="key" style="height:100px; resize:none;" placeholder="Description"></textarea>
-                     </div>
-                     <div class="form-group">
-                        <input type="text" name="key" id="key" class="form-control" placeholder="Emplacement">
-                     </div>
-                     <div class="form-group">
-                        <input type="text" name="key" id="key" class="form-control" placeholder="Race">
+                        @Html.TextBox("TB_Race", null, new { maxlength = 20, @class = "form-control", @placeholder = "Race du cheval" })
                      </div>
                      <section id="login" style="padding: 0px">
                         <h1 style="text-align:center; font-size:20px;">Discipline</h1>
@@ -42,36 +37,36 @@
                         <div class="col-sm-12">
                            <ul class="uldiscipline" style="margin-bottom: 0px;width: 340px; padding-left: 0px;">
                               <li>
-                                 <input type="radio" name="group1" value="Milk" id="rad1">
-                                 <label for="rad1">Saut d'obstacle</label>
+                                 @Html.Label("Saut d'obstacle ")
+                                 @Html.RadioButton("rad1", "Saut d'obstacle")
                               </li>
                               <li>
-                                 <input type="radio" name="group1" value="Milk" id="rad2">
-                                 <label for="rad2">Dressage</label>
+                                 @Html.Label("Dressage ")
+                                 @Html.RadioButton("rad1", "Dressage")
+                              </li>                               
+                              <li>
+                                 @Html.Label("Gymkhana ")
+                                 @Html.RadioButton("rad1", "Gymkhana")
                               </li>
                               <li>
-                                 <input type="radio" name="group1" value="Milk" id="rad3">
-                                 <label for="rad3">Gymkhana</label>
+                                 @Html.Label("Reining ")
+                                 @Html.RadioButton("rad1", "Reining")
                               </li>
                               <li>
-                                 <input type="radio" name="group1" value="Milk" id="rad4">
-                                 <label for="rad4">Reining</label>
+                                 @Html.Label("Plaissance ")
+                                 @Html.RadioButton("rad1", "Plaissance")
                               </li>
                               <li>
-                                 <input type="radio" name="group1" value="Milk" id="rad5">
-                                 <label for="rad5">Plaisance</label>
+                                 @Html.Label("Voltige ")
+                                 @Html.RadioButton("rad1", "Voltige")
                               </li>
                               <li>
-                                 <input type="radio" name="group1" value="Milk" id="rad6">
-                                 <label for="rad6">Voltige</label>
+                                 @Html.Label("Polo ")
+                                 @Html.RadioButton("rad1", "Polo")
                               </li>
                               <li>
-                                 <input type="radio" name="group1" value="Milk" id="rad7">
-                                 <label for="rad7">Polo</label>
-                              </li>
-                              <li>
-                                 <input type="radio" name="group1" value="Milk" id="rad8">
-                                 <label for="rad8">Attelage</label>
+                                 @Html.Label("Attelage ")
+                                 @Html.RadioButton("rad1", "Attelage")
                               </li>
                            </ul>
                         </div>
@@ -120,9 +115,9 @@
                      </div>
                      <br />
                      <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Enregistrer">
-                     <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Annuler">
-                  </form>
+                     <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Annuler">                                   
                </div>
+               }  
             </div>
          </div>
       </div>
