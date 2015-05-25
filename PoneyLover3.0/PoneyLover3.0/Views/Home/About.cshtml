@@ -1,23 +1,20 @@
-﻿@{
-    ViewBag.Title = "About";
-}
+﻿@model PoneyLover3._0.Models.unCheval
 
 <style type="text/css">
-    h2 {
-        font-weight: bolder;
-    }
+   h2 {
+      font-weight: bolder;
+   }
 
-    h4 {
-        color: #1fa67b;
-        font-weight: bold;
-    }
-
+   h4 {
+      color: #1fa67b;
+      font-weight: bold;
+   }
 </style>
 
 <section id="login" style="padding-top: 0px">
    <table style="margin:auto;">
       <tr>
-         <td><div><a href ="" onclick="PrecedantCheval('');" id="previoushorse"><img width=50 src="..\\..\\Images\PreviousImage.png" alt="Precedent"></a></div></td>
+         <td><div><a href="" onclick="PrecedantCheval('');" id="previoushorse"><img width=50 src="..\\..\\Images\PreviousImage.png" alt="Precedent"></a></div></td>
          <td><h1 style="text-align:center; font-size:50px; padding-left:100px; padding-right:100px;">Les Chevaux</h1></td>
          <td><div><a href="" onclick="SuivantCheval('');" id="nexthorse"><img width=50 src="..\\..\\Images\NextPicture.png" alt="Suivant"></a></div></td>
       </tr>
@@ -39,34 +36,29 @@
    </div>
 </div>
 <div class="container" style="width:500px; text-align:center;">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="form-wrap">
-                <div class="col-xs-2 col-xs-12" >
-                    <h2>Holly Barbie Girl</h2>
-                    <p style="text-align:justify;">
-                        Le cheval de race Karabair est originaire de l'Ouzbékistan et du nord du Tadjikistan.
-                        C'est une race de cheval de selle.
-                        On retrouve le cheval Karabair (en Ouzbékistan) aussi sous le nom de Karabairskaya (en Russie) et Qarabair (en Tadjik).
-                        La race de cheval Karabair est une race très ancienne.
-                        Son apparition daterait d'avant l'ère chrétienne mais rien ne permet réellement de l'assurer.
-                    </p>
-                    <h4>Race</h4>
-                    <p class="">Quarter Horse</p>
-                    <h4>Discipline</h4>
-                    <p class="">Reining</p>
-                    <h4>Propriétaire</h4>
-                    <p class="">Mélissa Boucher</p>
-                    <h4>Emplacement</h4>
-                    <p class="">Institut Western MDG</p>
-
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="form-wrap">
+            <div class="col-xs-2 col-xs-12">
+               <h2>@Model.Nom</h2>
+               <p style="text-align:justify;">
+                  @Model.Description
+               </p>
+               <h4>Race</h4>
+               <p>@Model.Race</p>
+               <h4>Discipline</h4>
+               <p>@Model.Discipline</p>
+               <h4>Propriétaire</h4>
+               <p>@Model.NomUsager</p>
+               <h4>Emplacement</h4>
+               <p>@Model.Emplacement</p>
                   <br />
-                   <br />
-                </div>
+                  <br />
+               </div>
             </div>
-        </div>
-    </div>
-</div>
+         </div>
+      </div>
+   </div>
 
 
 

@@ -8,6 +8,92 @@ namespace PoneyLover3._0.Models
 {
    public class ClassLiaisonBD
    {
+
+      public static string GetNomUsager(SqlConnection conn, int id)
+      {
+         string nomusager = "";
+         SqlCommand sql = new SqlCommand("select nomusager from usager where id = " + id);
+         sql.Connection = conn;
+         conn.Open();
+
+         SqlDataReader sqlDR = sql.ExecuteReader();
+
+         if(sqlDR.Read())
+         {
+            nomusager = sqlDR.GetString(0);
+         }
+
+         conn.Close();
+         sqlDR.Close();
+
+         return nomusager;
+      }
+
+      public static string[,] GetListChevaux(SqlConnection conn)
+      {
+         SqlCommand sql = new SqlCommand("select id, nom, description, emplacement, race, discipline, idusager from cheval group by id, nom, description, emplacement, race, discipline, idusager");
+         sql.Connection = conn;
+         conn.Open();
+
+         SqlDataReader sqlDR = sql.ExecuteReader();
+         int nombre = 0;
+         while(sqlDR.Read())
+         {
+            nombre++;
+         }
+         string[,] Tab = new string[nombre, 7];
+         sqlDR.Close();
+         if(nombre > 0)
+         {
+            SqlDataReader sqlDR2 = sql.ExecuteReader();
+            int cpt = 0; 
+            while (sqlDR2.Read())
+            {
+               Tab[cpt, 0] = sqlDR2.GetInt32(0).ToString();
+               Tab[cpt, 1] = sqlDR2.GetString(1);
+               Tab[cpt, 2] = sqlDR2.GetString(2);
+               Tab[cpt, 3] = sqlDR2.GetString(3);
+               Tab[cpt, 4] = sqlDR2.GetString(4);
+               Tab[cpt, 5] = sqlDR2.GetString(5);
+               Tab[cpt, 6] = sqlDR2.GetInt32(6).ToString();
+               cpt++;
+            }
+            sqlDR2.Close();
+         }
+         conn.Close();
+
+         return Tab;
+      }
+
+      public static string[,] GetImageChevaux(SqlConnection conn, int IDCheval )
+      {
+         SqlCommand sql = new SqlCommand("select count(id), id, guidphoto from photo where idcheval = " + IDCheval + " group by id, guidphoto");
+         sql.Connection = conn;
+         conn.Open();
+
+         SqlDataReader sqlDR = sql.ExecuteReader();
+         int nombre = 0;
+         if (sqlDR.Read())
+         {
+            nombre = sqlDR.GetInt32(0);
+         }
+         string[,] Tab = new string[nombre, 2];
+         if (nombre >= 1)
+         {
+            int cpt = 0;
+            while (sqlDR.Read())
+            {
+               Tab[cpt, 0] = sqlDR.GetInt32(1).ToString();
+               Tab[cpt, 1] = sqlDR.GetString(2);
+               cpt++;
+            }
+         }
+         conn.Close();
+         sqlDR.Close();
+
+         return Tab;
+      }
+
       public static bool NomUsagerExiste(string nomuser, SqlConnection conn)
       {
          bool resultat = false;
@@ -31,7 +117,7 @@ namespace PoneyLover3._0.Models
 
       public static string[] GetChevaux(string Username, SqlConnection conn)
       {
-         SqlCommand sql = new SqlCommand("select count(nom), nom from cheval where idusager = " + GetIDUsager(conn, Username));
+         SqlCommand sql = new SqlCommand("select count(nom), nom from cheval where idusager = " + GetIDUsager(conn, Username) + " group by nom") ;
          sql.Connection = conn;
          conn.Open();
 
@@ -42,7 +128,7 @@ namespace PoneyLover3._0.Models
             nombreresultat = sqlDR.GetInt32(0);
          }
          string[] Tab = new string[nombreresultat];
-         if(nombreresultat > 1)
+         if(nombreresultat >= 1)
          {
             int cpt = 1;
             while (sqlDR.Read())
