@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -26,6 +27,19 @@ namespace PoneyLover3._0.Controllers
             if (Models.ClassLiaisonBD.InsertionCheval(TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
 				{
 					ViewBag.Reussi = "Cheval enregistrer !";
+
+               for (int i = 0; i < 6; i++ )
+               {
+                  
+               }
+
+
+               ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+               ModelState.SetModelValue("TB_Description", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+               ModelState.SetModelValue("TB_Emplacement", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+               ModelState.SetModelValue("TB_Race", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+               ModelState.SetModelValue("rad1", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+
 				}
 				else
 				{
@@ -36,7 +50,7 @@ namespace PoneyLover3._0.Controllers
 			{
 				 ViewBag.ErreurVide = "Tout les champs doivent être remplis";
 			}
-			return View();
+         return View();
 		}
 
     }

@@ -29,7 +29,27 @@ namespace PoneyLover3._0.Models
             return resultat;
         }
 
-        public static int TrouverDernierID(SqlConnection conn, string table)
+       public static bool InsertionImageCheval(String GuidCheval, String IDCheval,SqlConnection conn)
+       {
+          bool resultat = false;
+
+          SqlCommand sql = new SqlCommand("insert into photo(ID,GuidPhoto,IDCheval) values (" + TrouverDernierID(conn, "usager") + ",'" + GuidCheval + "','" + IDCheval + "')");
+          sql.Connection = conn;
+          conn.Open();
+
+          int ligne = sql.ExecuteNonQuery();
+
+          if (ligne == 1)
+          {
+             resultat = true;
+          }
+
+          conn.Close();
+
+          return resultat;
+       }
+       
+       public static int TrouverDernierID(SqlConnection conn, string table)
         {
             int id = 0 ;
 
@@ -98,8 +118,8 @@ namespace PoneyLover3._0.Models
 
             if (ID != -1)
             {
-                SqlCommand sql = new SqlCommand(" insert into cheval(id, nom, description, emplacement, race, discipline, idusager) " +
-                                                " values (" + TrouverDernierID(conn, "Cheval") + "'" + Nom + "', '" + Description + "', '" + Emplacement + "', '" + Race + "', '" + Discipline + "', " + ID + ")");
+                SqlCommand sql = new SqlCommand("insert into cheval(id, nom, description, emplacement, race, discipline, idusager) " +
+                                                " values (" + TrouverDernierID(conn, "Cheval") + ",'" + Nom + "', '" + Description + "', '" + Emplacement + "', '" + Race + "', '" + Discipline + "', " + ID + ")");
                 sql.Connection = conn;
                 conn.Open();
 
@@ -118,7 +138,7 @@ namespace PoneyLover3._0.Models
         {
             int id = -1;
 
-            SqlCommand sql = new SqlCommand("select Id from usager where NomUsager = '" + NomUsager + "')");
+            SqlCommand sql = new SqlCommand("select Id from usager where NomUsager = '" + NomUsager + "'");
             sql.Connection = conn;
             conn.Open();
 
