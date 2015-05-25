@@ -98,8 +98,8 @@ namespace PoneyLover3._0.Models
 
             if (ID != -1)
             {
-                SqlCommand sql = new SqlCommand(" insert into cheval(nom, description, emplacement, race, discipline, idusager) " +
-                                                " values ('" + Nom + "', '" + Description + "', '" + Emplacement + "', '" + Race + "', '" + Discipline + "', " + ID + "')");
+                SqlCommand sql = new SqlCommand(" insert into cheval(id, nom, description, emplacement, race, discipline, idusager) " +
+                                                " values (" + TrouverDernierID(conn, "Cheval") + "'" + Nom + "', '" + Description + "', '" + Emplacement + "', '" + Race + "', '" + Discipline + "', " + ID + ")");
                 sql.Connection = conn;
                 conn.Open();
 
