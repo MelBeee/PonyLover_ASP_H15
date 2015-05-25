@@ -63,36 +63,36 @@
                         <div class="col-sm-12">
                            <ul class="uldiscipline" style="margin-bottom: 0px;width: 340px; padding-left: 0px;">
                               <li>
-                                 @Html.Label("Saut d'obstacle ")
                                  @Html.RadioButton("rad1", "Saut d'obstacle")
+                                 @Html.Label("Saut d'obstacle ")
                               </li>
                               <li>
-                                 @Html.Label("Dressage ")
                                  @Html.RadioButton("rad1", "Dressage")
+                                 @Html.Label("Dressage ")
                               </li>                               
                               <li>
-                                 @Html.Label("Gymkhana ")
                                  @Html.RadioButton("rad1", "Gymkhana")
+                                 @Html.Label("Gymkhana ")
                               </li>
                               <li>
-                                 @Html.Label("Reining ")
                                  @Html.RadioButton("rad1", "Reining")
+                                 @Html.Label("Reining ")
                               </li>
                               <li>
-                                 @Html.Label("Plaissance ")
                                  @Html.RadioButton("rad1", "Plaissance")
+                                 @Html.Label("Plaissance ")
                               </li>
                               <li>
-                                 @Html.Label("Voltige ")
                                  @Html.RadioButton("rad1", "Voltige")
+                                 @Html.Label("Voltige ")
                               </li>
                               <li>
-                                 @Html.Label("Polo ")
                                  @Html.RadioButton("rad1", "Polo")
+                                 @Html.Label("Polo ")
                               </li>
                               <li>
-                                 @Html.Label("Attelage ")
                                  @Html.RadioButton("rad1", "Attelage")
+                                 @Html.Label("Attelage ")
                               </li>
                            </ul>
                         </div>
@@ -105,26 +105,35 @@
                          @using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
                          {
                          <table>
-                           <tr>
-                              <td>
+                            <tr>
+                               <td>
                                   <img src="..\\..\\Images\BasePicture.png" id="Image1" alt="+" style="height: 100px; width: 100px;" />
-                                  <input type="file" name="FileUpload" onchange="PreLoadImage(Image1)"/>
-                              </td>
-                              <td>                                  
+                               </td>
+                               <td>
+                                  <input type="file" name="FileUpload" onchange="PreLoadImage(Image1)" />
+                               </td>
+                            </tr>
+                            <tr>
+                               <td>
                                   <img src="..\\..\\Images\BasePicture.png" id="Image2" alt="+" style="height: 100px; width: 100px; " />
+                               </td>
+                               <td>
                                   <input type="file" name="FileUpload" onchange="PreLoadImage(Image2)" />
-                              </td>
-                              <td>                                  
+                               </td>
+                            </tr>
+                            <tr>
+                               <td>
                                   <img src="..\\..\\Images\BasePicture.png" id="Image3" alt="+" style="height: 100px; width: 100px; " />
+                               </td>
+                               <td>
                                   <input type="file" name="FileUpload" onchange="PreLoadImage(Image3)" />
-                              </td>
-                           </tr>                         
+                               </td>
+                            </tr>                      
                         </table>                        
                         }
                      </div>
                      <br />                  
-                     <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Enregistrer">
-                     <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Annuler">                                   
+                     <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Enregistrer">                                   
                </div>
                }  
             </div>

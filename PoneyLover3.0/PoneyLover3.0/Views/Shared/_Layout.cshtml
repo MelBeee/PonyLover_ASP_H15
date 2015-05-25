@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model PoneyLover3._0.Models.ImageModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -69,9 +71,9 @@
             </div>
         </div>
     </div>
-    @* image banner *@
-    <div class="jumbotron" style=" background-image: url(/Images/Banner6.png); ">
-    </div>
+   <div id="image">
+      @{Html.RenderPartial("Partial1", Model);}
+   </div>
     <div class="container body-content">
 
         @RenderBody()
@@ -92,6 +94,24 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+   <script type="text/javascript">
+    var timer;
+    function ChargeVuePartielle() {
+        $.ajax({
+            url: '@Url.Action("Partial1")',
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#image').html(result);
+            }
+        });
+    }
+
+    ChargeVuePartielle();
+    $(function () {
+        timer = window.setInterval("ChargeVuePartielle()", 8000);
+    });
+   </script>
 </body>
 </html>
 

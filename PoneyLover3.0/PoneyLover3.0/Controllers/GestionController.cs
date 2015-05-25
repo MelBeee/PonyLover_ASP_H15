@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PoneyLover3._0.Models;
+using PoneyLover3._0.Class;
 
 namespace PoneyLover3._0.Controllers
 {
@@ -14,11 +16,11 @@ namespace PoneyLover3._0.Controllers
         public ActionResult Gestion()
         {
            int foo = 1;
-            return View();
+           return View(new ImageModel());
         }
 
       [HttpPost]
-      public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1,String )
+      public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1)
 		{
 			SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
          if (TB_Nom != "" && TB_Description != "" && TB_Emplacement != "" && TB_Race != "" && rad1 != "" && Session["UserName"].ToString() != "")
@@ -28,7 +30,7 @@ namespace PoneyLover3._0.Controllers
 				{
 					ViewBag.Reussi = "Cheval enregistrer !";
 
-               Models.ClassLiaisonBD.InsertionImageCheval()
+               //Models.ClassLiaisonBD.InsertionImageCheval()
 
 
                ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
@@ -47,7 +49,7 @@ namespace PoneyLover3._0.Controllers
 			{
 				 ViewBag.ErreurVide = "Tout les champs doivent être remplis";
 			}
-         return View();
+         return View(new ImageModel());
 		}
 
     }
