@@ -15,7 +15,7 @@ namespace PoneyLover3._0.Controllers
     {
         public ActionResult Gestion()
         {
-           if (Session["Username"] == "" && !(bool)Session["UserValid"])
+           if (Session["Username"].ToString() == "" && !(bool)Session["UserValid"])
            {
               return RedirectToAction("Index", "Home");
            }
