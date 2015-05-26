@@ -122,7 +122,6 @@
     </Compile>
     <Compile Include="Models\ClassLiaisonBD.cs" />
     <Compile Include="Models\ImageModel.cs" />
-    <Compile Include="Models\unCheval.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
