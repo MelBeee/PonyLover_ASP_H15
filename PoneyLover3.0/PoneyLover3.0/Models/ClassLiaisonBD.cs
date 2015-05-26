@@ -245,7 +245,7 @@ namespace PoneyLover3._0.Models
 
          if (sqlRD.Read())
          {
-            id = sqlRD.GetInt32(0) + 1;
+            id = sqlRD.GetInt32(0);
          }
          conn.Close();
          sqlRD.Close();

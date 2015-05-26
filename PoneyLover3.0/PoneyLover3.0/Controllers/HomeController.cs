@@ -18,7 +18,7 @@ namespace PoneyLover3._0.Controllers
          return View(new ImageModel());
       }
 
-      // fonction pour tableau (liste) cheval
+      
       public ActionResult About()
       {
          SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
