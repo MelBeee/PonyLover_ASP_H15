@@ -1,64 +1,66 @@
 ﻿@model PoneyLover3._0.Models.unCheval
 
 <style type="text/css">
-   h2 {
-      font-weight: bolder;
-   }
+    h2 {
+        font-weight: bolder;
+    }
 
-   h4 {
-      color: #1fa67b;
-      font-weight: bold;
-   }
+    h4 {
+        color: #1fa67b;
+        font-weight: bold;
+    }
 </style>
 
 <section id="login" style="padding-top: 0px">
-   <table style="margin:auto;">
-      <tr>
-         <td><div><a href="" onclick="PrecedantCheval('');" id="previoushorse"><img width=50 src="..\\..\\Images\PreviousImage.png" alt="Precedent"></a></div></td>
-         <td><h1 style="text-align:center; font-size:50px; padding-left:100px; padding-right:100px;">Les Chevaux</h1></td>
-         <td><div><a href="" onclick="SuivantCheval('');" id="nexthorse"><img width=50 src="..\\..\\Images\NextPicture.png" alt="Suivant"></a></div></td>
-      </tr>
-   </table>
+    <table style="margin:auto;">
+        <tr>
+            <td><div><a href="" onclick="PrecedantCheval('');" id="previoushorse"><img width=50 src="..\\..\\Images\PreviousImage.png" alt="Precedent"></a></div></td>
+            <td><h1 style="text-align:center; font-size:50px; padding-left:100px; padding-right:100px;">Les Chevaux</h1></td>
+            <td><div><a href="" onclick="SuivantCheval('');" id="nexthorse"><img width=50 src="..\\..\\Images\NextPicture.png" alt="Suivant"></a></div></td>
+        </tr>
+    </table>
 </section>
 
 <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
 
-
-<div class="container" style="width:600px; margin: 0 auto;">
-   <div class="picgallerie">
-      <table>
-         <tr>
-            <td><div><a href="" onclick="PrecedantPhoto('');" id="previous"><img width=50 src="..\\..\\Images\PreviousImage.png" alt="Precedent"></a></div></td>
-            <td><img class="image" src="..\\..\\Images\BasePicture.png" alt="Photo1" width="500"></td>
-            <td><div><a href="" onclick="SuivantPhoto('');" id="next"><img width=50 src="..\\..\\Images\NextPicture.png" alt="Suivant"></a></div></td>
-         </tr>
-      </table>
-   </div>
-</div>
-<div class="container" style="width:500px; text-align:center;">
-   <div class="row">
-      <div class="col-xs-12">
-         <div class="form-wrap">
-            <div class="col-xs-2 col-xs-12">
-               <h2>@Model.Nom_</h2> <input type="hidden" name="IDCheval" value="@Model.ID_">
-               <p style="text-align:justify;">
-                  @Model.Description_
-               </p>
-               <h4>Race</h4>
-               <p>@Model.Race_</p>
-               <h4>Discipline</h4>
-               <p>@Model.Discipline_</p>
-               <h4>Propriétaire</h4>
-               <p>@Model.NomUsager_</p>
-               <h4>Emplacement</h4>
-               <p>@Model.Emplacement_</p>
-                  <br />
-                  <br />
-               </div>
+@foreach (PoneyLover3._0.Models.unCheval j in ViewBag.Cheval)
+{
+    string c = j.tab_[0, 0];
+    <div class="container" style="width:600px; margin: 0 auto;">
+        <div class="picgallerie">
+            <table>
+                <tr>
+                    <td><div><a href="" onclick="PrecedantPhoto('');" id="previous"><img width=50 src="..\\..\\Images\PreviousImage.png" alt="Precedent"></a></div></td>
+                    <td><img class="image" src="..\\..\\Images\Cheval\@c" alt="Photo1" width="500"></td>
+                    <td><div><a href="" onclick="SuivantPhoto('');" id="next"><img width=50 src="..\\..\\Images\NextPicture.png" alt="Suivant"></a></div></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="container" style="width:500px; text-align:center;">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-wrap">
+                    <div class="col-xs-2 col-xs-12">
+                        <h2>@j.Nom_</h2> <input type="hidden" name="IDCheval" value="@j.ID_">
+                        <p style="text-align:justify;">
+                            @j.Description_
+                        </p>
+                        <h4>Race</h4>
+                        <p>@j.Race_</p>
+                        <h4>Discipline</h4>
+                        <p>@j.Discipline_</p>
+                        <h4>Propriétaire</h4>
+                        <p>@j.NomUsager_</p>
+                        <h4>Emplacement</h4>
+                        <p>@j.Emplacement_</p>
+                        <br />
+                        <br />
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
-
+        </div>
+    </div>
+}
 
 

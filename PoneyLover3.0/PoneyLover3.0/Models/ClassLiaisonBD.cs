@@ -29,6 +29,8 @@ namespace PoneyLover3._0.Models
             return nomusager;
         }
 
+
+
         public static string[,] GetListChevaux(SqlConnection conn)
         {
             SqlCommand sql = new SqlCommand("select id, nom, description, emplacement, race, discipline, idusager from cheval ");
@@ -172,6 +174,45 @@ namespace PoneyLover3._0.Models
             int id = 0;
 
             SqlCommand sql = new SqlCommand("select max(ID) from " + table + "");
+            sql.Connection = conn;
+            conn.Open();
+
+            SqlDataReader sqlRD = sql.ExecuteReader();
+
+            if (sqlRD.Read())
+            {
+                id = sqlRD.GetInt32(0) + 1;
+            }
+            conn.Close();
+            sqlRD.Close();
+
+            return id;
+        }
+
+        public static unCheval GetInfoCheval(SqlConnection conn, int Id)
+        {
+            SqlCommand sql = new SqlCommand("select id, nom, description, emplacement, race, discipline, idusager from cheval where id = " + Id);
+            sql.Connection = conn;
+            conn.Open();
+            unCheval tempo = null;
+
+            SqlDataReader sqlDR = sql.ExecuteReader();
+            if(sqlDR.Read())
+            {
+                tempo = new unCheval(sqlDR.GetInt32(0), sqlDR.GetString(1), sqlDR.GetString(2), sqlDR.GetString(3), sqlDR.GetString(4), sqlDR.GetString(5), Models.ClassLiaisonBD.GetNomUsager(conn, sqlDR.GetInt32(6)), Models.ClassLiaisonBD.GetImageChevaux(conn, sqlDR.GetInt32(0)));
+            }
+            conn.Close();
+            sqlDR.Close();
+
+
+            return tempo;
+        }
+
+        public static int GetPremierID(SqlConnection conn)
+        {
+            int id = 0;
+
+            SqlCommand sql = new SqlCommand("select min(ID) from cheval");
             sql.Connection = conn;
             conn.Open();
 
