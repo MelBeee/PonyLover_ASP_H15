@@ -23,19 +23,14 @@ namespace PoneyLover3._0.Controllers
          SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
 
          string[,] TabChevaux = Models.ClassLiaisonBD.GetListChevaux(conn);
-         
-         unCheval [] tabdeChevaux = new unCheval[TabChevaux.Length/7];
 
-         for(int i = 0; i < TabChevaux.Length ; i++)
+          int nombre =TabChevaux.Length /7;
+          unCheval[] tabdeChevaux = new unCheval[nombre];
+
+          for (int i = 0; i < nombre; i++)
          {
-            tabdeChevaux[i].ID = int.Parse(TabChevaux[i,0]);
-            tabdeChevaux[i].Nom = TabChevaux[i, 1];
-            tabdeChevaux[i].Description = TabChevaux[i, 2];
-            tabdeChevaux[i].Race = TabChevaux[i, 3];
-            tabdeChevaux[i].Discipline = TabChevaux[i, 4];
-            tabdeChevaux[i].Emplacement = TabChevaux[i, 5];
-            tabdeChevaux[i].NomUsager = Models.ClassLiaisonBD.GetNomUsager(conn, int.Parse(TabChevaux[i, 6]));
-            tabdeChevaux[i].tab = Models.ClassLiaisonBD.GetImageChevaux(conn, int.Parse(TabChevaux[i,0]));
+            string [,] tabImage = Models.ClassLiaisonBD.GetImageChevaux(conn, int.Parse(TabChevaux[i,0]));
+            tabdeChevaux[i] = new unCheval(int.Parse(TabChevaux[i, 0]), TabChevaux[i, 1], TabChevaux[i, 2], TabChevaux[i, 3], TabChevaux[i, 4], TabChevaux[i, 5], TabChevaux[i, 6], tabImage);
          }
          return View(new ImageModel());
       }
