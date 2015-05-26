@@ -1,5 +1,17 @@
 ﻿@model PoneyLover3._0.Models.ImageModel
 
+@functions
+{
+    public string[] GetChevaux()
+    {
+        System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(Session["DBPony"].ToString());
+        string username = (string)Session["Username"];
+        string [] tab = PoneyLover3._0.Models.ClassLiaisonBD.GetChevaux(username, conn);
+
+        return tab;
+    }
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,10 +67,16 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Nouveau cheval", "Gestion", "Gestion")</li>
-                            @* for each cheval dans la table *@
-                            <li>@Html.ActionLink("Cheval1", "Gestion", "Gestion")</li>
-                            <li>@Html.ActionLink("Cheval2", "Gestion", "Gestion")</li>
-                            <li>@Html.ActionLink("Cheval3", "Gestion", "Gestion")</li>
+                            @{
+                                string [] tab = GetChevaux();
+                                if(tab.Length > 0)
+                                {
+                                    for (int i = 0; i < tab.Length ; i++ )
+                                    {
+                                        <li>@Html.ActionLink(tab[i], "Gestion", "Gestion")</li>
+                                    }
+                                }
+                            }
                         </ul>
                      </li>
                      <li>@Html.ActionLink("Deconnection", "Deconnection", "Home")</li>    

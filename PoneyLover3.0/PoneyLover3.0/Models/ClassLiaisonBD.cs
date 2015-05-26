@@ -199,7 +199,7 @@ namespace PoneyLover3._0.Models
          if (nombreresultat > 0)
          {
             SqlDataReader sqlDR2 = sql.ExecuteReader();
-            int cpt = 1;
+            int cpt = 0;
             while (sqlDR2.Read())
             {
                Tab[cpt] = sqlDR2.GetString(0);
