@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using PoneyLover3._0.Models;
 using PoneyLover3._0.Class;
 
+
 namespace PoneyLover3._0.Controllers
 {
     public class GestionController : Controller
@@ -22,8 +23,10 @@ namespace PoneyLover3._0.Controllers
            return View(new ImageModel());
         }
 
+		
+
       [HttpPost]
-      public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1)
+		public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1, HttpPostedFileBase FileUpload1, HttpPostedFileBase FileUpload2, HttpPostedFileBase FileUpload3)
 		{
 			SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
          if (TB_Nom != "" && TB_Description != "" && TB_Emplacement != "" && TB_Race != "" && rad1 != "" && Session["UserName"].ToString() != "")
@@ -31,9 +34,14 @@ namespace PoneyLover3._0.Controllers
 
             if (Models.ClassLiaisonBD.InsertionCheval(TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
 				{
-					ViewBag.Reussi = "Cheval enregistrer !";
+			   ViewBag.Reussi = "Cheval enregistrer !";
 
-               //Models.ClassLiaisonBD.InsertionImageCheval()
+			   if (FileUpload1.FileName  != "")
+				   Models.ClassLiaisonBD.InsertionImageCheval(FileUpload1.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")  -1).ToString(), conn);
+			   if (FileUpload2.FileName != "")
+				   Models.ClassLiaisonBD.InsertionImageCheval(FileUpload2.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
+			   if (FileUpload3.FileName != "")
+				   Models.ClassLiaisonBD.InsertionImageCheval(FileUpload3.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
 
 
                ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));

@@ -213,24 +213,17 @@ namespace PoneyLover3._0.Models
          return Tab;
       }
 
-      public static bool InsertionImageCheval(String GuidCheval, String IDCheval, SqlConnection conn)
-      {
-         bool resultat = false;
-
-         SqlCommand sql = new SqlCommand("insert into photo(ID,GuidPhoto,IDCheval) values (" + TrouverDernierID(conn, "usager") + ",'" + GuidCheval + "','" + IDCheval + "')");
+      public static void InsertionImageCheval(String GuidCheval, String IDCheval, SqlConnection conn)
+      {			
+		 
+		 SqlCommand sql = new SqlCommand("insert into photo(ID,GuidPhoto,IDCheval) values (" + TrouverDernierID(conn, "Photo") + ",'" + GuidCheval + "','" + IDCheval + "')");
          sql.Connection = conn;
          conn.Open();
 
-         int ligne = sql.ExecuteNonQuery();
+         int ligne = sql.ExecuteNonQuery();	     
 
-         if (ligne == 1)
-         {
-            resultat = true;
-         }
-
-         conn.Close();
-
-         return resultat;
+         conn.Close();			  
+         
       }
 
       public static int TrouverDernierID(SqlConnection conn, string table)
