@@ -30,7 +30,7 @@ namespace PoneyLover3._0.Models
             conn.Close();
             return id;
         }
-	
+
 
 
         public static string GetNomUsager(SqlConnection conn, int id)
@@ -170,20 +170,10 @@ namespace PoneyLover3._0.Models
 
             do
             {
-                try
-                {
-                    Random chiffrealatoire = new Random();
-                    int aleatoire = chiffrealatoire.Next(0, nombre - 1);
+                Random chiffrealatoire = new Random();
+                int aleatoire = chiffrealatoire.Next(0, nombre - 1);
 
-                    chiffre = tab[aleatoire];
-                }
-                catch(Exception ex)
-                {
-                    string blabla = ex.Message;
-                    int chiffrequimarchepas = chiffre;
-                    int blablala = 2;
-                    int rerqe = 4;
-                }
+                chiffre = tab[aleatoire];
 
             } while (chiffre == ancienchiffre);
             ancienchiffre = chiffre;
@@ -194,7 +184,7 @@ namespace PoneyLover3._0.Models
 
         public static bool NomUsagerExiste(string nomuser, SqlConnection conn)
         {
-            bool resultat = false; 
+            bool resultat = false;
 
             SqlCommand sql = new SqlCommand("select nomusager from usager where nomusager = '" + nomuser + "'");
             sql.Connection = conn;
@@ -259,34 +249,16 @@ namespace PoneyLover3._0.Models
             conn.Close();
         }
 
-		public static void UpdateImageCheval(String NewGuidCheval, String IdCheval, SqlConnection conn, int Pos)
-		{
-			NewGuidCheval = ReplaceRegex(NewGuidCheval);
-			String [] TabIdImageCheval = TrouverIDImageCheval(conn,IdCheval);
-			SqlCommand sql = new SqlCommand("Update Photo set GuidPhoto ='" + NewGuidCheval + "' where IDCheval =" + IdCheval + " And ID =" + TabIdImageCheval[Pos]);
-			sql.Connection = conn;
-			conn.Open();	 
-			sql.ExecuteNonQuery();
-			conn.Close();
-		}
-		public static String[] TrouverIDImageCheval(SqlConnection conn, String IdCheval)
-		{
-			SqlCommand sql = new SqlCommand("select ID from Cheval where IdCheval = '" + IdCheval + "'");
-			sql.Connection = conn;
-			conn.Open();   
+        public static void UpdateImageCheval(String NewGuidCheval, String IdCheval, SqlConnection conn, int Pos)
+        {
+            NewGuidCheval = ReplaceRegex(NewGuidCheval);
 
-			string[] unTableau = new string[1];
-
-			SqlDataReader sqlDRget = sql.ExecuteReader();
-			if (sqlDRget.Read())
-			{
-				unTableau[0] = sqlDRget.GetInt32(0).ToString();							
-			}
-			conn.Close();
-			sqlDRget.Close();
-
-			return unTableau;
-		}
+            SqlCommand sql = new SqlCommand("Update Photo set GuidPhoto ='" + NewGuidCheval + "' where IDCheval =" + IdCheval + " And ID =" + Pos);
+            sql.Connection = conn;
+            conn.Open();
+            sql.ExecuteNonQuery();
+            conn.Close();
+        }
 
         public static int TrouverDernierID(SqlConnection conn, string table)
         {
