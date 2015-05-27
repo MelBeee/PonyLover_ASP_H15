@@ -4,28 +4,12 @@
       height: auto;
    }
 </style>
-<script>
-    function PreLoadImage(ElementPhoto) {
-        var imageTarget = document.getElementById(ElementPhoto);
-        var input = document.getElementById("FileUpload");
-        if (imageTarget != null) {
-            var fReader = new FileReader();
-            fReader.readAsDataURL(input.files[0]);
-            fReader.onloadend = function (event) {
-                // the event.target.result contains the image data
-                imageTarget.src = event.target.result;
-
-            }
-        }
-        return true;
-    }
-
-</script>
 
 <section id="login" style="padding-top: 0px">
    <h1 style="text-align:center; font-size:50px;">Mon cheval</h1>
 </section>
 <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
+
 <section id="login" style="padding-top: 15px">
    <div class="container">
       <div class="row">
@@ -46,8 +30,9 @@
                      <div class="form-group">                     
                          @Html.TextBox("TB_Nom", null, new { maxlength = 20, @class = "form-control", @placeholder = "Nom du cheval" })
                      </div>
-                     <div class="form-group">                      
-                         @Html.TextArea("TB_Description", null, new { maxlength = 200, @class = "form-control", @placeholder = "Description", @Rows="6" })
+                     <div class="form-group">     
+						 @{String DescriptionDuCheval = ViewBag.DescriptionCheval;}                 
+                         @Html.TextArea("TB_Description", DescriptionDuCheval , new { maxlength = 200, @class = "form-control", @placeholder = "Description", @Rows="6" })
                      </div>
                      <div class="form-group">                       
                          @Html.TextBox("TB_Emplacement", null, new { maxlength = 20, @class = "form-control", @placeholder = "Emplacement du cheval" })
@@ -101,35 +86,42 @@
                         <h1 style="text-align:center; font-size:20px;">Images</h1>
                      </section>
                      <div class="form-group" style="margin-bottom: 0px;width: 380px; padding-left: 0px;">
-                         @using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                         {
+                          						
                          <table>
                             <tr>
-                               <td>
-                                  <img src="..\\..\\Images\BasePicture.png" id="Image1" alt="+" style="height: 100px; width: 100px;" />
+                               <td>	
+									@{String Image1Cheval = ViewBag.Image1;} 																			
+								    <img src="..\\..\\Images\Cheval\@Image1Cheval" id="Image1" alt="+" style="height: 100px; width: 100px;" />
                                </td>
                                <td>
-                                  <input type="file" name="FileUpload" onchange="PreLoadImage(Image1)" />
-                               </td>
-                            </tr>
-                            <tr>
-                               <td>
-                                  <img src="..\\..\\Images\BasePicture.png" id="Image2" alt="+" style="height: 100px; width: 100px; " />
-                               </td>
-                               <td>
-                                  <input type="file" name="FileUpload" onchange="PreLoadImage(Image2)" />
+                                 	<input type="file" name="FileUpload1" id="files1" class="hidden"/>
+									<label for="files1">@Image1Cheval</label>                                       
                                </td>
                             </tr>
                             <tr>
                                <td>
-                                  <img src="..\\..\\Images\BasePicture.png" id="Image3" alt="+" style="height: 100px; width: 100px; " />
+									@{String Image2Cheval = ViewBag.Image2;}  
+                                  <img src="..\\..\\Images\Cheval\@Image2Cheval" id="Image2" alt="+" style="height: 100px; width: 100px; " />
                                </td>
                                <td>
-                                  <input type="file" name="FileUpload" onchange="PreLoadImage(Image3)" />
+                                  <input type="file" name="FileUpload2" id="files2" class="hidden"/>
+								  <label for="files2">@Image2Cheval</label> 
+                               </td>
+                            </tr>
+                            <tr>
+                               <td>	
+									 @{String Image3Cheval = ViewBag.Image3;}  
+                                  <img src="..\\..\\Images\Cheval\@Image3Cheval" id="Image3" alt="+" style="height: 100px; width: 100px; " />
+                               </td>
+                               <td>	
+								  
+                                  <input type="file" name="FileUpload3" id="files3" class="hidden"/>                                  
+								                              
+								  <label for="files3">@Image3Cheval</label> 
                                </td>
                             </tr>                      
-                        </table>                        
-                        }
+                        </table>                       
+                       	
                      </div>
                      <br />                  
                      <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Enregistrer">                                   

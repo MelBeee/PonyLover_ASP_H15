@@ -14,8 +14,11 @@ namespace PoneyLover3._0.Controllers
 {
     public class GestionController : Controller
     {
+
         public ActionResult Gestion(int? _idcheval)
         {
+			SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
+
             if (Session["Username"].ToString() == "" && !(bool)Session["UserValid"])
             {
                 return RedirectToAction("Index", "Home");
@@ -23,10 +26,20 @@ namespace PoneyLover3._0.Controllers
 
             if(_idcheval != null)
             {
-                int ID = _idcheval.GetValueOrDefault();
+                int ID = _idcheval.GetValueOrDefault();		 
                 ViewBag.NomDeCheval = ID;
+				String [] InfoCheval = Models.ClassLiaisonBD.GetInfoCheval(conn,ID);
+				String [] ImageCheval = Models.ClassLiaisonBD.GetImageChevaux(conn, ID);
 
-                
+				ModelState.SetModelValue("TB_Nom", new ValueProviderResult(InfoCheval[1], string.Empty, new CultureInfo("en-US")));
+				ViewBag.DescriptionCheval = InfoCheval[2];
+				ModelState.SetModelValue("TB_Emplacement", new ValueProviderResult(InfoCheval[3], string.Empty, new CultureInfo("en-US")));
+				ModelState.SetModelValue("TB_Race", new ValueProviderResult(InfoCheval[4], string.Empty, new CultureInfo("en-US")));
+				ModelState.SetModelValue("rad1", new ValueProviderResult(InfoCheval[5], string.Empty, new CultureInfo("en-US")));
+				ViewBag.Image1 = ImageCheval[0];
+				ViewBag.Image2 = ImageCheval[1];
+				ViewBag.Image3 = ImageCheval[2];
+
             }
 
             return View(new ImageModel());

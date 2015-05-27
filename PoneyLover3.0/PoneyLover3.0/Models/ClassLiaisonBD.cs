@@ -30,6 +30,8 @@ namespace PoneyLover3._0.Models
             conn.Close();
             return id;
         }
+	
+
 
         public static string GetNomUsager(SqlConnection conn, int id)
         {
