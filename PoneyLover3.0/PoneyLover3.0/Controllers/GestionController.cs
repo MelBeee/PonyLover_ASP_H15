@@ -127,8 +127,18 @@ namespace PoneyLover3._0.Controllers
 					ViewBag.ErreurVide = "Tout les champs doivent être remplis";
 				}
 			    return View(new ImageModel());
-			 }	  			
-          
-      	  
+			 }
+
+
+        public PartialViewResult ShowImage()
+        {
+            return PartialView("Partial1", new ImageModel());
+        }
+
+        public ActionResult Partial1()
+        {
+            return PartialView("Partial1", new ImageModel());
+        }
 		} 	
+
 }
