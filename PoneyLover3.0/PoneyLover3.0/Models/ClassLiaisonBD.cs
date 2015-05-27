@@ -170,10 +170,21 @@ namespace PoneyLover3._0.Models
 
             do
             {
-                Random chiffrealatoire = new Random();
-                int aleatoire = chiffrealatoire.Next(0, nombre);
+                try
+                {
+                    Random chiffrealatoire = new Random();
+                    int aleatoire = chiffrealatoire.Next(0, nombre - 1);
 
-                chiffre = tab[aleatoire];
+                    chiffre = tab[aleatoire];
+                }
+                catch(Exception ex)
+                {
+                    string blabla = ex.Message;
+                    int chiffrequimarchepas = chiffre;
+                    int blablala = 2;
+                    int rerqe = 4;
+                }
+
             } while (chiffre == ancienchiffre);
             ancienchiffre = chiffre;
             conn.Close();

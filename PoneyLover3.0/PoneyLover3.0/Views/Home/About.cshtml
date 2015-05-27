@@ -11,7 +11,7 @@
 <form role="form" action="About" method="post" id="" autocomplete="off">
     <div class="container body-content">
         <section id="login" style="padding-top: 0px">
-            <table style="margin:auto; width:300px;">
+            <table style="margin:auto; width:300px; ">
                 <tr>
                     <td>
                         <input style="margin:0 auto;" type="submit" id="btn_random" class="btn btn-custom btn-lg btn-block" value="Random Me A Horse">
@@ -32,6 +32,7 @@
                 <div class="col-xs-12">
                     <div class="form-wrap">
                         <div class="col-xs-2 col-xs-12">
+                            @ViewBag.ID
                             <h2>@ViewBag.Nom</h2> <input type="hidden" name="IDCheval" value="@ViewBag.ID">
                             <p style="text-align:justify;">
                                 @ViewBag.Description
