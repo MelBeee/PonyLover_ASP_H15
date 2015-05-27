@@ -14,9 +14,11 @@ namespace PoneyLover3._0.Controllers
 {
     public class GestionController : Controller
     {
+		Boolean Update;
 
         public ActionResult Gestion(int? _idcheval)
         {
+			Update = false;
 			SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
 
             if (Session["Username"].ToString() == "" && !(bool)Session["UserValid"])
@@ -51,6 +53,7 @@ namespace PoneyLover3._0.Controllers
                 {
                     ViewBag.Image3 = ImageCheval[2];
                 }
+			    Update = true;
             }
             else
             {
@@ -66,38 +69,69 @@ namespace PoneyLover3._0.Controllers
         public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1, HttpPostedFileBase FileUpload1, HttpPostedFileBase FileUpload2, HttpPostedFileBase FileUpload3)
         {
             SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
-            if (TB_Nom != "" && TB_Description != "" && TB_Emplacement != "" && TB_Race != "" && rad1 != "" && Session["UserName"].ToString() != "")
-            {
+           	
+				if (TB_Nom != "" && TB_Description != "" && TB_Emplacement != "" && TB_Race != "" && rad1 != "" && Session["UserName"].ToString() != "")
+				{
+					if (!Update)
+					{
 
-                if (Models.ClassLiaisonBD.InsertionCheval(TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
-                {
-                    ViewBag.Reussi = "Cheval enregistré !";
+						if (Models.ClassLiaisonBD.InsertionCheval(TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
+						{
+							ViewBag.Reussi = "Cheval enregistré !";
 
-                    if (FileUpload1.FileName != "")
-                        Models.ClassLiaisonBD.InsertionImageCheval(FileUpload1.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
-                    if (FileUpload2.FileName != "")
-                        Models.ClassLiaisonBD.InsertionImageCheval(FileUpload2.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
-                    if (FileUpload3.FileName != "")
-                        Models.ClassLiaisonBD.InsertionImageCheval(FileUpload3.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
+							if (FileUpload1.FileName != "")
+								Models.ClassLiaisonBD.InsertionImageCheval(FileUpload1.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
+							if (FileUpload2.FileName != "")
+								Models.ClassLiaisonBD.InsertionImageCheval(FileUpload2.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
+							if (FileUpload3.FileName != "")
+								Models.ClassLiaisonBD.InsertionImageCheval(FileUpload3.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
 
 
-                    ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-                    ModelState.SetModelValue("TB_Description", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-                    ModelState.SetModelValue("TB_Emplacement", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-                    ModelState.SetModelValue("TB_Race", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-                    ModelState.SetModelValue("rad1", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-                }
-                else
-                {
-                    ViewBag.NonReussi = "Erreur dans l'enregistrement du cheval !";
-                }
-            }
-            else
-            {
-                ViewBag.ErreurVide = "Tout les champs doivent être remplis";
-            }
-            return View(new ImageModel());
-        }
+							ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+							ModelState.SetModelValue("TB_Description", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+							ModelState.SetModelValue("TB_Emplacement", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+							ModelState.SetModelValue("TB_Race", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+							ModelState.SetModelValue("rad1", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+						}
+						else
+						{
+							ViewBag.NonReussi = "Erreur dans l'enregistrement du cheval !";
+						}
+					}
+					else
+					{
+							if(Models.ClassLiaisonBD.UpdateCheval(ViewBag.NomDeCheval,TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn) )
+							{
+								    ViewBag.Reussi = "Cheval Modifier !";
 
+								    if (FileUpload1.FileName != "")
+										Models.ClassLiaisonBD.InsertionImageCheval(FileUpload1.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
+									if (FileUpload2.FileName != "")
+										Models.ClassLiaisonBD.InsertionImageCheval(FileUpload2.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
+									if (FileUpload3.FileName != "")
+										Models.ClassLiaisonBD.InsertionImageCheval(FileUpload3.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
+								    
+									ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+									ModelState.SetModelValue("TB_Description", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+									ModelState.SetModelValue("TB_Emplacement", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+									ModelState.SetModelValue("TB_Race", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+									ModelState.SetModelValue("rad1", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+								  
+							}
+							else
+							{
+								ViewBag.NonReussi = "Erreur dans la modifcation du cheval !";
+							}
+				    }
+				}
+				else
+				{
+					ViewBag.ErreurVide = "Tout les champs doivent être remplis";
+				}
+
+			 }	  			
+          
+      			return View(new ImageModel());
+		} 	
     }
 }
