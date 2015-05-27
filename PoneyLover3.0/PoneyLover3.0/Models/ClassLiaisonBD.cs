@@ -246,7 +246,6 @@ namespace PoneyLover3._0.Models
             int ligne = sql.ExecuteNonQuery();
 
             conn.Close();
-
         }
 
         public static int TrouverDernierID(SqlConnection conn, string table)
