@@ -236,8 +236,10 @@ namespace PoneyLover3._0.Models
 
         public static void InsertionImageCheval(String GuidCheval, String IDCheval, SqlConnection conn)
         {
+            GuidCheval = ReplaceRegex(GuidCheval);
+
             int dernierid = TrouverDernierID(conn, "Photo") + 1;
-            SqlCommand sql = new SqlCommand("insert into photo(ID,GuidPhoto,IDCheval) values (" + dernierid + ",'" + GuidCheval + "','" + IDCheval + "')");
+            SqlCommand sql = new SqlCommand("insert into photo(ID,GuidPhoto,IDCheval) values (" + dernierid + ",'" + GuidCheval + "'," + IDCheval + ")");
             sql.Connection = conn;
             conn.Open();
 
@@ -313,6 +315,10 @@ namespace PoneyLover3._0.Models
 
         public static bool InsertionUtilisateur(string nomuser, string nomcomplet, string motdepasse, string courriel, SqlConnection conn)
         {
+            nomuser = ReplaceRegex(nomuser);
+            nomcomplet = ReplaceRegex(nomcomplet);
+            motdepasse = ReplaceRegex(motdepasse);
+            courriel = ReplaceRegex(courriel);
             bool resultat = false;
             int dernierid = TrouverDernierID(conn, "usager") + 1;
             SqlCommand sql = new SqlCommand("insert into usager(ID, NomUsager, NomComplet, MotDePasse, AdresseCourriel)" +
@@ -353,8 +359,20 @@ namespace PoneyLover3._0.Models
             return resultat;
         }
 
+        public static string ReplaceRegex(string unString)
+        {
+            unString = unString.Replace("'", "''");
+
+            return unString;
+        }
+
         public static bool InsertionCheval(string Nom, string Description, string Emplacement, string Race, string Discipline, string NomUsager, SqlConnection conn)
         {
+            Nom = ReplaceRegex(Nom);
+            Description = ReplaceRegex(Description);
+            Emplacement = ReplaceRegex(Emplacement);
+            Race = ReplaceRegex(Race);
+            Discipline = ReplaceRegex(Discipline);
             bool resultat = false;
             int ID = GetIDUsager(conn, NomUsager);
             int IDDernier = TrouverDernierID(conn, "Cheval") + 1;
@@ -439,6 +457,11 @@ namespace PoneyLover3._0.Models
 
         public static bool UpdateCheval(int ID, string Nom, string Description, string Emplacement, string Race, string Discipline, string NomUsager, SqlConnection conn)
         {
+            Nom = ReplaceRegex(Nom);
+            Description = ReplaceRegex(Description);
+            Emplacement = ReplaceRegex(Emplacement);
+            Race = ReplaceRegex(Race);
+            Discipline = ReplaceRegex(Discipline);
             bool resultat = false;
             int IDUsager = GetIDUsager(conn, NomUsager);
 
