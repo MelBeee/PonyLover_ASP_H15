@@ -34,22 +34,21 @@ namespace PoneyLover3._0.Controllers
 
             if (Models.ClassLiaisonBD.InsertionCheval(TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
 				{
-			   ViewBag.Reussi = "Cheval enregistrer !";
+				   ViewBag.Reussi = "Cheval enregistrer !";
 
-			   if (FileUpload1.FileName  != "")
-				   Models.ClassLiaisonBD.InsertionImageCheval(FileUpload1.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")  -1).ToString(), conn);
-			   if (FileUpload2.FileName != "")
-				   Models.ClassLiaisonBD.InsertionImageCheval(FileUpload2.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
-			   if (FileUpload3.FileName != "")
-				   Models.ClassLiaisonBD.InsertionImageCheval(FileUpload3.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
+				   if (FileUpload1.FileName  != "")
+					   Models.ClassLiaisonBD.InsertionImageCheval(FileUpload1.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")  -1).ToString(), conn);
+				   if (FileUpload2.FileName != "")
+					   Models.ClassLiaisonBD.InsertionImageCheval(FileUpload2.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
+				   if (FileUpload3.FileName != "")
+					   Models.ClassLiaisonBD.InsertionImageCheval(FileUpload3.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
 
 
-               ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-               ModelState.SetModelValue("TB_Description", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-               ModelState.SetModelValue("TB_Emplacement", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-               ModelState.SetModelValue("TB_Race", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-               ModelState.SetModelValue("rad1", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-
+				   ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+				   ModelState.SetModelValue("TB_Description", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+				   ModelState.SetModelValue("TB_Emplacement", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+				   ModelState.SetModelValue("TB_Race", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+				   ModelState.SetModelValue("rad1", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));	
 				}
 				else
 				{
