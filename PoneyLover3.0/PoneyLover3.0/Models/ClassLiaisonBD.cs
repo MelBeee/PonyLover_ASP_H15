@@ -171,7 +171,7 @@ namespace PoneyLover3._0.Models
             do
             {
                 Random chiffrealatoire = new Random();
-                int aleatoire = chiffrealatoire.Next(0, nombre - 1);
+                int aleatoire = chiffrealatoire.Next(0, nombre);
 
                 chiffre = tab[aleatoire];
             } while (chiffre == ancienchiffre);
@@ -360,12 +360,14 @@ namespace PoneyLover3._0.Models
             int IDDernier = TrouverDernierID(conn, "Cheval") + 1;
             if (ID != -1)
             {
-                SqlCommand sql = new SqlCommand("insert into cheval(id, nom, description, emplacement, race, discipline, idusager) " +
+                SqlCommand sql = new SqlCommand("insert into cheval (id, nom, description, emplacement, race, discipline, idusager) " +
                                                 " values (" + IDDernier + ",'" + Nom + "', '" + Description + "', '" + Emplacement + "', '" + Race + "', '" + Discipline + "', " + ID + ")");
                 sql.Connection = conn;
                 conn.Open();
 
-                if (1 == sql.ExecuteNonQuery())
+                int ligne = sql.ExecuteNonQuery();
+
+                if (ligne == 1)
                 {
                     resultat = true;
                 }
