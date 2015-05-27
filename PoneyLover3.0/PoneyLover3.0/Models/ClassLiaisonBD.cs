@@ -259,6 +259,35 @@ namespace PoneyLover3._0.Models
             conn.Close();
         }
 
+		public static void UpdateImageCheval(String NewGuidCheval, String IdCheval, SqlConnection conn, int Pos)
+		{
+			NewGuidCheval = ReplaceRegex(NewGuidCheval);
+			String [] TabIdImageCheval = TrouverIDImageCheval(conn,IdCheval);
+			SqlCommand sql = new SqlCommand("Update Photo set GuidPhoto ='" + NewGuidCheval + "' where IDCheval =" + IdCheval + " And ID =" + TabIdImageCheval[Pos]);
+			sql.Connection = conn;
+			conn.Open();	 
+			sql.ExecuteNonQuery();
+			conn.Close();
+		}
+		public static String[] TrouverIDImageCheval(SqlConnection conn, String IdCheval)
+		{
+			SqlCommand sql = new SqlCommand("select ID from Cheval where IdCheval = '" + IdCheval + "'");
+			sql.Connection = conn;
+			conn.Open();   
+
+			string[] unTableau = new string[1];
+
+			SqlDataReader sqlDRget = sql.ExecuteReader();
+			if (sqlDRget.Read())
+			{
+				unTableau[0] = sqlDRget.GetInt32(0).ToString();							
+			}
+			conn.Close();
+			sqlDRget.Close();
+
+			return unTableau;
+		}
+
         public static int TrouverDernierID(SqlConnection conn, string table)
         {
             int id = 0;
