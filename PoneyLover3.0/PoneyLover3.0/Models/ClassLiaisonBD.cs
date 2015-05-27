@@ -235,12 +235,11 @@ namespace PoneyLover3._0.Models
             return Tab;
         }
 
-        public static void InsertionImageCheval(String GuidCheval, String IDCheval, SqlConnection conn)
+        public static void InsertionImageCheval(int id, String GuidCheval, String IDCheval, SqlConnection conn)
         {
             GuidCheval = ReplaceRegex(GuidCheval);
 
-            int dernierid = TrouverDernierID(conn, "Photo") + 1;
-            SqlCommand sql = new SqlCommand("insert into photo(ID,GuidPhoto,IDCheval) values (" + dernierid + ",'" + GuidCheval + "'," + IDCheval + ")");
+            SqlCommand sql = new SqlCommand("insert into photo(ID,GuidPhoto,IDCheval) values (" + id + ",'" + GuidCheval + "'," + IDCheval + ")");
             sql.Connection = conn;
             conn.Open();
 

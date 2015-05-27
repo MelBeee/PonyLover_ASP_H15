@@ -29,7 +29,7 @@ namespace PoneyLover3._0.Controllers
             if (_idcheval != null)
             {
                 int ID = _idcheval.GetValueOrDefault();
-                ViewBag.NomDeCheval = ID;
+                ViewBag.IdDuCheval = ID;
                 String[] InfoCheval = Models.ClassLiaisonBD.GetInfoCheval(conn, ID);
                 String[] ImageCheval = Models.ClassLiaisonBD.GetImageChevaux(conn, ID);
 
@@ -95,7 +95,11 @@ namespace PoneyLover3._0.Controllers
                                 System.IO.File.Delete(path);
                             }
                             FileUpload1.SaveAs(path);
-                            Models.ClassLiaisonBD.InsertionImageCheval(fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
+                            Models.ClassLiaisonBD.InsertionImageCheval(1, fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
+                        }
+                        else
+                        {
+                            Models.ClassLiaisonBD.InsertionImageCheval(1, "BasePicture.png", (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
                         }
                         if (FileUpload2 != null)
                         {
@@ -107,8 +111,12 @@ namespace PoneyLover3._0.Controllers
                                 System.IO.File.Delete(path);
                             }
                             FileUpload2.SaveAs(path);
-                            Models.ClassLiaisonBD.InsertionImageCheval(fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
-                        }   
+                            Models.ClassLiaisonBD.InsertionImageCheval(2, fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
+                        }
+                        else
+                        {
+                            Models.ClassLiaisonBD.InsertionImageCheval(2, "BasePicture.png", (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
+                        }
                         if (FileUpload3 != null)
                         {
                             string extension = Path.GetExtension(FileUpload3.FileName);
@@ -119,7 +127,11 @@ namespace PoneyLover3._0.Controllers
                                 System.IO.File.Delete(path);
                             }
                             FileUpload3.SaveAs(path);
-                            Models.ClassLiaisonBD.InsertionImageCheval(fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
+                            Models.ClassLiaisonBD.InsertionImageCheval(3, fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
+                        }
+                        else
+                        {
+                            Models.ClassLiaisonBD.InsertionImageCheval(3, "BasePicture.png", (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
                         }
 
                         ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
@@ -138,7 +150,7 @@ namespace PoneyLover3._0.Controllers
                 }
                 else
                 {
-                    if (Models.ClassLiaisonBD.UpdateCheval(ViewBag.NomDeCheval, TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
+                    if (Models.ClassLiaisonBD.UpdateCheval(ViewBag.IdDuCheval, TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
                     {
                         ViewBag.Reussi = "Cheval Modifié !";
 
@@ -152,7 +164,7 @@ namespace PoneyLover3._0.Controllers
                                 System.IO.File.Delete(path);
                             }
                             FileUpload1.SaveAs(path);
-                            //Models.ClassLiaisonBD.UpdateImageCheval(FileUpload1.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn, 1);
+                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload1.FileName, ViewBag.IdDuCheval, conn, 1);
                         }                         
                         if (FileUpload2 != null)
                         {
@@ -164,8 +176,8 @@ namespace PoneyLover3._0.Controllers
                                 System.IO.File.Delete(path);
                             }
                             FileUpload2.SaveAs(path);
+                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload2.FileName, ViewBag.IdDuCheval, conn, 2);
                         }
-                            //Models.ClassLiaisonBD.UpdateImageCheval(FileUpload2.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn, 2);
                         if (FileUpload3 != null)
                         {
                             string extension = Path.GetExtension(FileUpload3.FileName);
@@ -176,8 +188,8 @@ namespace PoneyLover3._0.Controllers
                                 System.IO.File.Delete(path);
                             }
                             FileUpload3.SaveAs(path);
+                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload3.FileName, ViewBag.IdDuCheval, conn, 3);
                         }
-                            //Models.ClassLiaisonBD.UpdateImageCheval(FileUpload3.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn, 3);
                     }
                     else
                     {
