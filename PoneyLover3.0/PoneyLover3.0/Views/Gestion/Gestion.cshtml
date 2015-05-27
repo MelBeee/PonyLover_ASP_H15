@@ -1,134 +1,179 @@
 ﻿<style>
-   img.resize {
-      width: 100px; /* you can use % */
-      height: auto;
-   }
+    img.resize {
+        width: 100px; /* you can use % */
+        height: auto;
+    }
 </style>
+<script type="text/javascript">
+    function ChargerPreview1() {
+        var imageTarget = document.getElementById("preview1");
+        var input = document.getElementById("fichier1");
+        if (imageTarget != null) {
+            var fReader = new FileReader();
+            fReader.readAsDataURL(input.files[0]);
+            fReader.onloadend = function (event) {
+                imageTarget.src = event.target.result;
+            }
+        }
+    }
+    function ChargerPreview2() {
+        var imageTarget = document.getElementById("preview2");
+        var input = document.getElementById("fichier2");
+        if (imageTarget != null) {
+            var fReader = new FileReader();
+            fReader.readAsDataURL(input.files[0]);
+            fReader.onloadend = function (event) {
+                imageTarget.src = event.target.result;
+            }
+        }
+    }
+    function ChargerPreview3() {
+        var imageTarget = document.getElementById("preview3");
+        var input = document.getElementById("fichier3");
+        if (imageTarget != null) {
+            var fReader = new FileReader();
+            fReader.readAsDataURL(input.files[0]);
+            fReader.onloadend = function (event) {
+                imageTarget.src = event.target.result;
+            }
+        }
+    }
+</script>
 
 <section id="login" style="padding-top: 0px">
-   <h1 style="text-align:center; font-size:50px;">Mon cheval</h1>
+    <h1 style="text-align:center; font-size:50px;">Mon cheval</h1>
 </section>
 <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
 
 <section id="login" style="padding-top: 15px">
-   <div class="container">
-      <div class="row">
-         <div class="col-xs-12">
-            <div class="form-wrap">
-               @using (Html.BeginForm("Gestion", "Gestion", FormMethod.Post, new { enctype = "multipart/form-data" }))
-               {                     
-               <div class="col-xs-2 col-xs-12" style="margin-left: 10px">
-                   @if (ViewBag.ErreurVide != "")
-                   {
-                       <label style="color: red; font-size: 15px;">@ViewBag.ErreurVide</label>
-                   }
-                   @if (ViewBag.NonReussi != "")
-                   {
-                       <label style="color: red; font-size: 15px;">@ViewBag.NonReussi</label>
-                   }
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-wrap">
+                    @using (Html.BeginForm("Gestion", "Gestion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="col-xs-2 col-xs-12" style="margin-left: 10px">
+                            @if (ViewBag.ErreurVide != "")
+                            {
+                                <label style="color: red; font-size: 15px;">@ViewBag.ErreurVide</label>
+                            }
+                            @if (ViewBag.NonReussi != "")
+                            {
+                                <label style="color: red; font-size: 15px;">@ViewBag.NonReussi</label>
+                            }
 
-                     <div class="form-group">                     
-                         @Html.TextBox("TB_Nom", null, new { maxlength = 20, @class = "form-control", @placeholder = "Nom du cheval" })
-                     </div>
-                     <div class="form-group">     
-						 @{String DescriptionDuCheval = ViewBag.DescriptionCheval;}                 
-                         @Html.TextArea("TB_Description", DescriptionDuCheval , new { maxlength = 200, @class = "form-control", @placeholder = "Description", @Rows="6" })
-                     </div>
-                     <div class="form-group">                       
-                         @Html.TextBox("TB_Emplacement", null, new { maxlength = 20, @class = "form-control", @placeholder = "Emplacement du cheval" })
-                     </div>
-                     <div class="form-group">
-                        @Html.TextBox("TB_Race", null, new { maxlength = 20, @class = "form-control", @placeholder = "Race du cheval" })
-                     </div>
-                     <section id="login" style="padding: 0px">
-                        <h1 style="text-align:center; font-size:20px;">Discipline</h1>
-                     </section>
-                     <div class="form-group">
-                        <div class="col-sm-12">
-                           <ul class="uldiscipline" style="margin-bottom: 0px;width: 340px; padding-left: 0px;">
-                              <li>
-                                 @Html.RadioButton("rad1", "Saut d'obstacle")
-                                 @Html.Label("Saut d'obstacle ")
-                              </li>
-                              <li>
-                                 @Html.RadioButton("rad1", "Dressage")
-                                 @Html.Label("Dressage ")
-                              </li>                               
-                              <li>
-                                 @Html.RadioButton("rad1", "Gymkhana")
-                                 @Html.Label("Gymkhana ")
-                              </li>
-                              <li>
-                                 @Html.RadioButton("rad1", "Reining")
-                                 @Html.Label("Reining ")
-                              </li>
-                              <li>
-                                 @Html.RadioButton("rad1", "Plaissance")
-                                 @Html.Label("Plaissance ")
-                              </li>
-                              <li>
-                                 @Html.RadioButton("rad1", "Voltige")
-                                 @Html.Label("Voltige ")
-                              </li>
-                              <li>
-                                 @Html.RadioButton("rad1", "Polo")
-                                 @Html.Label("Polo ")
-                              </li>
-                              <li>
-                                 @Html.RadioButton("rad1", "Attelage")
-                                 @Html.Label("Attelage ")
-                              </li>
-                           </ul>
+                            <div class="form-group">
+                                @Html.TextBox("TB_Nom", null, new { maxlength = 20, @class = "form-control", @placeholder = "Nom du cheval" })
+                            </div>
+                            <div class="form-group">
+                                @{String DescriptionDuCheval = ViewBag.DescriptionCheval;}
+                                @Html.TextArea("TB_Description", DescriptionDuCheval, new { maxlength = 200, @class = "form-control", @placeholder = "Description", @Rows = "6" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBox("TB_Emplacement", null, new { maxlength = 20, @class = "form-control", @placeholder = "Emplacement du cheval" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBox("TB_Race", null, new { maxlength = 20, @class = "form-control", @placeholder = "Race du cheval" })
+                            </div>
+                            <section id="login" style="padding: 0px">
+                                <h1 style="text-align:center; font-size:20px;">Discipline</h1>
+                            </section>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <ul class="uldiscipline" style="margin-bottom: 0px;width: 340px; padding-left: 0px;">
+                                        <li>
+                                            @Html.RadioButton("rad1", "Saut d'obstacle")
+                                            @Html.Label("Saut d'obstacle ")
+                                        </li>
+                                        <li>
+                                            @Html.RadioButton("rad1", "Dressage")
+                                            @Html.Label("Dressage ")
+                                        </li>
+                                        <li>
+                                            @Html.RadioButton("rad1", "Gymkhana")
+                                            @Html.Label("Gymkhana ")
+                                        </li>
+                                        <li>
+                                            @Html.RadioButton("rad1", "Reining")
+                                            @Html.Label("Reining ")
+                                        </li>
+                                        <li>
+                                            @Html.RadioButton("rad1", "Plaissance")
+                                            @Html.Label("Plaissance ")
+                                        </li>
+                                        <li>
+                                            @Html.RadioButton("rad1", "Voltige")
+                                            @Html.Label("Voltige ")
+                                        </li>
+                                        <li>
+                                            @Html.RadioButton("rad1", "Polo")
+                                            @Html.Label("Polo ")
+                                        </li>
+                                        <li>
+                                            @Html.RadioButton("rad1", "Attelage")
+                                            @Html.Label("Attelage ")
+                                        </li>
+                                        <li>
+                                            @Html.RadioButton("rad1", "Course")
+                                            @Html.Label("Course ")
+                                        </li>
+                                        <li>
+                                            @Html.RadioButton("rad1", "Autre")
+                                            @Html.Label("Autre ")
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <section id="login" style="padding: 0px">
+                                <h1 style="text-align:center; font-size:20px;">Images <br /><span style="font-size:15px; color:gray;">Taille de 300px par 600px recommendée</span></h1>
+                                <h6 style="text-align:center;"></h6>
+                            </section>
+                            <div class="form-group" style="margin-bottom: 0px;width: 380px; padding-left: 0px;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            @{
+                                                string image1 = ViewBag.Image1;
+                                            }
+                                            <img id="preview1" src="..\\..\\Images\Cheval\@image1" alt="Apercu" style="width:100px; height:100px" />
+                                            <div class="form-group">
+                                                <input id="fichier1" type="file" accept=".jpg,.png,.gif" name="Image" onchange="ChargerPreview1()" class="" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @{
+                                                string image2 = ViewBag.Image2;
+                                            }
+                                            <img id="preview2" src="..\\..\\Images\Cheval\@image2" alt="Apercu" style="width:100px; height:100px" />
+                                            <div class="form-group">
+                                                <input id="fichier2" type="file" accept=".jpg,.png,.gif" name="Image" onchange="ChargerPreview2()" class="" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @{
+                                                string image3 = ViewBag.Image3;
+                                            }
+                                            <img id="preview3" src="..\\..\\Images\Cheval\@image3" alt="Apercu" style="width:100px; height:100px" />
+                                            <div class="form-group">
+                                                <input id="fichier3" type="file" accept=".jpg,.png,.gif" name="Image" onchange="ChargerPreview3()" class="" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br />
+                            <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Enregistrer">
                         </div>
-
-                     </div>
-                     <section id="login" style="padding: 0px">
-                        <h1 style="text-align:center; font-size:20px;">Images</h1>
-                     </section>
-                     <div class="form-group" style="margin-bottom: 0px;width: 380px; padding-left: 0px;">
-                          						
-                         <table>
-                            <tr>
-                               <td>	
-								   @{String Image1Cheval = ViewBag.Image1;} 																			
-								   <img src="..\\..\\Images\Cheval\@Image1Cheval" id="Image1" alt="+" style="height: 100px; width: 100px;" />
-                               </td>
-                               <td>
-                                   <input type="file" name="FileUpload1" id="files1" class="hidden"/>
-								   <label for="files1">@Image1Cheval</label>                                       
-                               </td>
-                            </tr>
-                            <tr>
-                               <td>
-								  @{String Image2Cheval = ViewBag.Image2;}  
-                                  <img src="..\\..\\Images\Cheval\@Image2Cheval" id="Image2" alt="+" style="height: 100px; width: 100px; " />
-                               </td>
-                               <td>
-                                  <input type="file" name="FileUpload2" id="files2" class="hidden"/>
-								  <label for="files2">@Image2Cheval</label> 
-                               </td>
-                            </tr>
-                            <tr>
-                               <td>	
-								  @{String Image3Cheval = ViewBag.Image3;}  
-                                  <img src="..\\..\\Images\Cheval\@Image3Cheval" id="Image3" alt="+" style="height: 100px; width: 100px; " />
-                               </td>
-                               <td>									  
-                                  <input type="file" name="FileUpload3" id="files3" class="hidden"/>							                              
-								  <label for="files3">@Image3Cheval</label> 
-                               </td>
-                            </tr>                      
-                        </table>                       
-                       	
-                     </div>
-                     <br />                  
-                     <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Enregistrer">                                   
-               </div>
-               }  
+                    }
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 </section>
 
 <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />

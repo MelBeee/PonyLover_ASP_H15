@@ -236,8 +236,8 @@ namespace PoneyLover3._0.Models
 
         public static void InsertionImageCheval(String GuidCheval, String IDCheval, SqlConnection conn)
         {
-
-            SqlCommand sql = new SqlCommand("insert into photo(ID,GuidPhoto,IDCheval) values (" + TrouverDernierID(conn, "Photo") + ",'" + GuidCheval + "','" + IDCheval + "')");
+            int dernierid = TrouverDernierID(conn, "Photo") + 1;
+            SqlCommand sql = new SqlCommand("insert into photo(ID,GuidPhoto,IDCheval) values (" + dernierid + ",'" + GuidCheval + "','" + IDCheval + "')");
             sql.Connection = conn;
             conn.Open();
 

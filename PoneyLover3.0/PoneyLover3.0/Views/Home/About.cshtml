@@ -58,7 +58,7 @@
          <tr>
             @foreach (string s in @ViewBag.Photo)
             {
-               <td><img style="margin: 0 auto; padding:5px;" class="image" src="..\\..\\Images\Cheval\@s" alt="Photo1" height="300"></td>
+               <td style="max-width:600px; overflow:hidden;" ><img style="margin: 0 auto; padding:5px;" class="image" src="..\\..\\Images\Cheval\@s" alt="Photo1" height="300"></td>
             }
          </tr>
       </table>
