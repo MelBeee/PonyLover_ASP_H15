@@ -73,7 +73,10 @@
                                 {
                                     for (int i = 0; i < tab.Length ; i++ )
                                     {
-                                        <li>@Html.ActionLink(tab[i], "Gestion", "Gestion")</li>
+                                        @*<li>@Html.ActionLink(tab[i], "Gestion", "Gestion", new { @id = "cheval" + i, @value = tab[i]} )</li>*@
+                                        System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(Session["DBPony"].ToString());
+                                        int ID = PoneyLover3._0.Models.ClassLiaisonBD.GetIDCheval(conn, tab[i]);
+                                        <li>@Html.ActionLink(tab[i], "Gestion", "Gestion", new { _idcheval = ID }, new { @id = "cheval" + i, @value = tab[i] })</li>
                                     }
                                 }
                             }
