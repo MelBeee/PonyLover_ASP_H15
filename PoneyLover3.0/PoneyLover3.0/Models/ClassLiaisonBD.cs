@@ -194,7 +194,7 @@ namespace PoneyLover3._0.Models
 
         public static bool NomUsagerExiste(string nomuser, SqlConnection conn)
         {
-            bool resultat = false;
+            bool resultat = false; 
 
             SqlCommand sql = new SqlCommand("select nomusager from usager where nomusager = '" + nomuser + "'");
             sql.Connection = conn;
