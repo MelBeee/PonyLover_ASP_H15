@@ -1,72 +1,65 @@
-﻿
+﻿<style type="text/css">
+    h2 {
+        font-weight: bolder;
+    }
 
-<style type="text/css">
-   h2 {
-      font-weight: bolder;
-   }
-
-   h4 {
-      color: #1fa67b;
-      font-weight: bold;
-   }
+    h4 {
+        color: #1fa67b;
+        font-weight: bold;
+    }
 </style>
-<div class="container body-content">
+<form role="form" action="About" method="post" id="" autocomplete="off">
+    <div class="container body-content">
+        <section id="login" style="padding-top: 0px">
+            <table style="margin:auto; width:300px;">
+                <tr>
+                    <td>
+                        <input style="margin:0 auto;" type="submit" id="btn_random" class="btn btn-custom btn-lg btn-block" value="Random Me A Horse">
+                    </td>
+                </tr>
+            </table>
+        </section>
 
-   <section id="login" style="padding-top: 0px">
-      <table style="margin:auto;">
-         <tr>
-            <td><h1 style="text-align:center; font-size:50px; padding-left:100px; padding-right:100px;">Les Chevaux</h1>
-                <input type="submit" id="btn-random" class="btn btn-custom btn-lg btn-block" value="Random Me A Horse">
-             </td>
-         </tr>
-      </table>
-   </section>
+        <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
 
-   <hr style="height: 2px; border: none; margin: 10px; color: gray; background-color: gray;" />
-
-   <div class="container" style="width:600px; margin: 0 auto;">
-      <div class="picgallerie" style="margin: 0 auto; width:500px;">
-         <img style="margin: 0 auto;" class="image" src="..\\..\\Images\Cheval\@ViewBag.Photo[0]" alt="Photo1" width="500">
-      </div>
-   </div>
-   <div class="container" style="width:500px; text-align:center;">
-      <div class="row">
-         <div class="col-xs-12">
-            <div class="form-wrap">
-               <div class="col-xs-2 col-xs-12">
-                  <h2>@ViewBag.Nom</h2> <input type="hidden" name="IDCheval" value="@ViewBag.ID">
-                  <p style="text-align:justify;">
-                     @ViewBag.Description
-                  </p>
-                  <h4>Race</h4>
-                  <p>@ViewBag.Race</p>
-                  <h4>Discipline</h4>
-                  <p>@ViewBag.Discipline</p>
-                  <h4>Propriétaire</h4>
-                  <p>@ViewBag.Proprio</p>
-                  <h4>Emplacement</h4>
-                  <p>@ViewBag.Emplacement</p>
-                  <br />
-                  <br />
-               </div>
+        <div class="container" style="width:600px; margin: 0 auto;">
+            <div class="picgallerie" style="margin: 0 auto; width:500px;">
+                <img style="margin: 0 auto;" class="image" src="..\\..\\Images\Cheval\@ViewBag.Photo[0]" alt="Photo1" width="500">
             </div>
-         </div>
-      </div>
-   </div>
-</div>
-<div style="padding-bottom:40px; margin: 0 auto; width:100%;">
-      <table style="margin:0 auto;">
-         <tr>
-            @foreach (string s in @ViewBag.Photo)
-            {
-               <td style="max-width:600px; overflow:hidden;" ><img style="margin: 0 auto; padding:5px;" class="image" src="..\\..\\Images\Cheval\@s" alt="Photo1" height="300"></td>
-            }
-         </tr>
-      </table>
-</div>
-
-
-
-
-
-
+        </div>
+        <div class="container" style="width:500px; text-align:center;">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-wrap">
+                        <div class="col-xs-2 col-xs-12">
+                            <h2>@ViewBag.Nom</h2> <input type="hidden" name="IDCheval" value="@ViewBag.ID">
+                            <p style="text-align:justify;">
+                                @ViewBag.Description
+                            </p>
+                            <h4>Race</h4>
+                            <p>@ViewBag.Race</p>
+                            <h4>Discipline</h4>
+                            <p>@ViewBag.Discipline</p>
+                            <h4>Propriétaire</h4>
+                            <p>@ViewBag.Proprio</p>
+                            <h4>Emplacement</h4>
+                            <p>@ViewBag.Emplacement</p>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding-bottom:40px; margin: 0 auto; width:100%;">
+        <table style="margin:0 auto;">
+            <tr>
+                @foreach (string s in @ViewBag.Photo)
+                {
+                    <td style="max-width:600px; overflow:hidden;"><img style="margin: 0 auto; padding:5px;" class="image" src="..\\..\\Images\Cheval\@s" alt="Photo1" height="300"></td>
+                }
+            </tr>
+        </table>
+    </div>
+</form>

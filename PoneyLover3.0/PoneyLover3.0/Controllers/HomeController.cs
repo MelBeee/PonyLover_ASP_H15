@@ -34,7 +34,6 @@ namespace PoneyLover3._0.Controllers
             string[] tab = new string[1];
             tab = Models.ClassLiaisonBD.GetImageChevaux(conn, int.Parse(c[0]));
 
-
             ViewBag.Nom = c[1];
             ViewBag.Description = c[2];
             ViewBag.Emplacement = c[3];
@@ -52,7 +51,7 @@ namespace PoneyLover3._0.Controllers
         }
 
         [HttpPost]
-        public ActionResult About()
+        public ActionResult About(string btn_random)
         {
             RandomMeAHorse();
 
