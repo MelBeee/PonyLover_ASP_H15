@@ -57,9 +57,13 @@
                             {
                                 <label style="color: red; font-size: 15px;">@ViewBag.ErreurVide</label>
                             }
-                            @if (ViewBag.NonReussi != "")
+							   @if (ViewBag.ErreurVide != "")
                             {
-                                <label style="color: red; font-size: 15px;">@ViewBag.NonReussi</label>
+                                <label style="color: red; font-size: 15px;">@ViewBag.ErreurVide</label>
+                            }
+                            @if (ViewBag.Reussi != "")
+                            {
+                                <label style="color: green; font-size: 15px;">@ViewBag.NonReussi</label>
                             }
 
                             <div class="form-group">
