@@ -79,11 +79,11 @@ namespace PoneyLover3._0.Controllers
 						{
 							ViewBag.Reussi = "Cheval enregistré !";
 
-							if (FileUpload1.FileName != "")
+							if (FileUpload1 != null)
 								Models.ClassLiaisonBD.InsertionImageCheval(FileUpload1.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
-							if (FileUpload2.FileName != "")
+							if (FileUpload2 != null)
 								Models.ClassLiaisonBD.InsertionImageCheval(FileUpload2.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
-							if (FileUpload3.FileName != "")
+							if (FileUpload3 != null)
 								Models.ClassLiaisonBD.InsertionImageCheval(FileUpload3.FileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval") - 1).ToString(), conn);
 
 
