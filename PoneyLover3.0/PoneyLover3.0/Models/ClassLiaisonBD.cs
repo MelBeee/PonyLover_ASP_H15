@@ -314,9 +314,9 @@ namespace PoneyLover3._0.Models
         public static bool InsertionUtilisateur(string nomuser, string nomcomplet, string motdepasse, string courriel, SqlConnection conn)
         {
             bool resultat = false;
-
+            int dernierid = TrouverDernierID(conn, "usager") + 1;
             SqlCommand sql = new SqlCommand("insert into usager(ID, NomUsager, NomComplet, MotDePasse, AdresseCourriel)" +
-                                            "values (" + TrouverDernierID(conn, "usager") + ",'" + nomuser + "', '" + nomcomplet + "', '" + motdepasse + "', '" + courriel + "')");
+                                            "values (" + dernierid + ",'" + nomuser + "', '" + nomcomplet + "', '" + motdepasse + "', '" + courriel + "')");
             sql.Connection = conn;
             conn.Open();
 
@@ -357,11 +357,11 @@ namespace PoneyLover3._0.Models
         {
             bool resultat = false;
             int ID = GetIDUsager(conn, NomUsager);
-
+            int IDDernier = TrouverDernierID(conn, "Cheval") + 1;
             if (ID != -1)
             {
                 SqlCommand sql = new SqlCommand("insert into cheval(id, nom, description, emplacement, race, discipline, idusager) " +
-                                                " values (" + TrouverDernierID(conn, "Cheval") + ",'" + Nom + "', '" + Description + "', '" + Emplacement + "', '" + Race + "', '" + Discipline + "', " + ID + ")");
+                                                " values (" + IDDernier + ",'" + Nom + "', '" + Description + "', '" + Emplacement + "', '" + Race + "', '" + Discipline + "', " + ID + ")");
                 sql.Connection = conn;
                 conn.Open();
 
