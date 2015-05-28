@@ -71,151 +71,165 @@ namespace PoneyLover3._0.Controllers
         }
 
         [HttpPost]
-        public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1, HttpPostedFileBase FileUpload1, HttpPostedFileBase FileUpload2, HttpPostedFileBase FileUpload3, String TB_Update, String TB_IDCheval)
+        public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1, HttpPostedFileBase FileUpload1, HttpPostedFileBase FileUpload2, HttpPostedFileBase FileUpload3, String TB_Update, String TB_IDCheval, string btn_delete, string btn_save)
         {
             SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
 
-            if (TB_Nom != "" && TB_Description != "" && TB_Emplacement != "" && TB_Race != "" && rad1 != "" && Session["UserName"].ToString() != "")
+            if (!string.IsNullOrWhiteSpace(btn_save))
             {
-                if (TB_Update == "non")
+                if (TB_Nom != "" && TB_Description != "" && TB_Emplacement != "" && TB_Race != "" && rad1 != "" && Session["UserName"].ToString() != "")
                 {
-                    if (Models.ClassLiaisonBD.InsertionCheval(TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
+                    if (TB_Update == "non")
                     {
-                        ViewBag.Reussi = "Cheval ajouté !";
+                        if (Models.ClassLiaisonBD.InsertionCheval(TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
+                        {
+                            ViewBag.Reussi = "Cheval ajouté !";
 
-                        if (FileUpload1 != null)
-                        {
-                            string extension = Path.GetExtension(FileUpload1.FileName);
-                            string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 1 + extension);
-                            string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
-                            if (System.IO.File.Exists(path))
+                            if (FileUpload1 != null)
                             {
-                                System.IO.File.Delete(path);
+                                string extension = Path.GetExtension(FileUpload1.FileName);
+                                string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 1 + extension);
+                                string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                FileUpload1.SaveAs(path);
+                                Models.ClassLiaisonBD.InsertionImageCheval(1, fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
                             }
-                            FileUpload1.SaveAs(path);
-                            Models.ClassLiaisonBD.InsertionImageCheval(1, fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
-                        }
-                        else
-                        {
-                            Models.ClassLiaisonBD.InsertionImageCheval(1, "BasePicture.png", (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
-                        }
-                        if (FileUpload2 != null)
-                        {
-                            string extension = Path.GetExtension(FileUpload2.FileName);
-                            string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 2 + extension);
-                            string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
-                            if(System.IO.File.Exists(path))
+                            else
                             {
-                                System.IO.File.Delete(path);
+                                Models.ClassLiaisonBD.InsertionImageCheval(1, "BasePicture.png", (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
                             }
-                            FileUpload2.SaveAs(path);
-                            Models.ClassLiaisonBD.InsertionImageCheval(2, fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
-                        }
-                        else
-                        {
-                            Models.ClassLiaisonBD.InsertionImageCheval(2, "BasePicture.png", (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
-                        }
-                        if (FileUpload3 != null)
-                        {
-                            string extension = Path.GetExtension(FileUpload3.FileName);
-                            string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 3 + extension);
-                            string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
-                            if (System.IO.File.Exists(path))
+                            if (FileUpload2 != null)
                             {
-                                System.IO.File.Delete(path);
+                                string extension = Path.GetExtension(FileUpload2.FileName);
+                                string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 2 + extension);
+                                string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                FileUpload2.SaveAs(path);
+                                Models.ClassLiaisonBD.InsertionImageCheval(2, fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
                             }
-                            FileUpload3.SaveAs(path);
-                            Models.ClassLiaisonBD.InsertionImageCheval(3, fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
-                        }
-                        else
-                        {
-                            Models.ClassLiaisonBD.InsertionImageCheval(3, "BasePicture.png", (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
-                        }
+                            else
+                            {
+                                Models.ClassLiaisonBD.InsertionImageCheval(2, "BasePicture.png", (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
+                            }
+                            if (FileUpload3 != null)
+                            {
+                                string extension = Path.GetExtension(FileUpload3.FileName);
+                                string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 3 + extension);
+                                string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                FileUpload3.SaveAs(path);
+                                Models.ClassLiaisonBD.InsertionImageCheval(3, fileName, (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
+                            }
+                            else
+                            {
+                                Models.ClassLiaisonBD.InsertionImageCheval(3, "BasePicture.png", (Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval")).ToString(), conn);
+                            }
 
-                        ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-                        ModelState.SetModelValue("TB_Description", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-                        ModelState.SetModelValue("TB_Emplacement", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-                        ModelState.SetModelValue("TB_Race", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-                        ModelState.SetModelValue("rad1", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
-                        ViewBag.Image1 = "BasePicture.png";
-                        ViewBag.Image2 = "BasePicture.png";
-                        ViewBag.Image3 = "BasePicture.png";
+                            ModelState.SetModelValue("TB_Nom", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+                            ModelState.SetModelValue("TB_Description", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+                            ModelState.SetModelValue("TB_Emplacement", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+                            ModelState.SetModelValue("TB_Race", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+                            ModelState.SetModelValue("rad1", new ValueProviderResult("", string.Empty, new CultureInfo("en-US")));
+                            ViewBag.Image1 = "BasePicture.png";
+                            ViewBag.Image2 = "BasePicture.png";
+                            ViewBag.Image3 = "BasePicture.png";
+                        }
+                        else
+                        {
+                            ViewBag.NonReussi = "Erreur dans l'enregistrement du cheval !";
+                        }
                     }
                     else
                     {
-                        ViewBag.NonReussi = "Erreur dans l'enregistrement du cheval !";
+                        int idcheval = int.Parse(TB_IDCheval);
+                        String[] tabImageCheval = Models.ClassLiaisonBD.GetImageChevaux(conn, idcheval);
+                        if (Models.ClassLiaisonBD.UpdateCheval(idcheval, TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
+                        {
+                            ViewBag.Reussi = "Cheval Modifié !";
+
+                            if (FileUpload1 != null)
+                            {
+                                string extension = Path.GetExtension(FileUpload1.FileName);
+                                string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 1 + extension);
+                                string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                FileUpload1.SaveAs(path);
+                                ViewBag.Image1 = fileName;
+                                Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 1);
+                            }
+                            else
+                            {
+                                ViewBag.Image1 = tabImageCheval[0];
+                            }
+                            if (FileUpload2 != null)
+                            {
+                                string extension = Path.GetExtension(FileUpload2.FileName);
+                                string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 2 + extension);
+                                string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                FileUpload2.SaveAs(path);
+                                ViewBag.Image2 = fileName;
+                                Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 2);
+                            }
+                            else
+                            {
+                                ViewBag.Image2 = tabImageCheval[1];
+                            }
+
+                            if (FileUpload3 != null)
+                            {
+                                string extension = Path.GetExtension(FileUpload3.FileName);
+                                string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 3 + extension);
+                                string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                FileUpload3.SaveAs(path);
+                                ViewBag.Image3 = fileName;
+                                Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 3);
+                            }
+                            else
+                            {
+                                ViewBag.Image3 = tabImageCheval[2];
+                            }
+                        }
+                        else
+                        {
+                            ViewBag.NonReussi = "Erreur dans la modifcation du cheval !";
+                        }
                     }
                 }
                 else
                 {
-                    int idcheval = int.Parse(TB_IDCheval);
-					String [] tabImageCheval = Models.ClassLiaisonBD.GetImageChevaux(conn, idcheval);
-                    if (Models.ClassLiaisonBD.UpdateCheval(idcheval, TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
-                    {
-                        ViewBag.Reussi = "Cheval Modifié !";
-
-                        if (FileUpload1 != null)
-                        {
-                            string extension = Path.GetExtension(FileUpload1.FileName);
-                            string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 1 + extension);
-                            string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
-                            if (System.IO.File.Exists(path))
-                            {
-                                System.IO.File.Delete(path);
-                            }
-                            FileUpload1.SaveAs(path);
-                            ViewBag.Image1 = fileName;
-                            Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 1);
-                        }
-                        else
- 					    {
-							  ViewBag.Image1 = tabImageCheval[0];
-						}
-                        if (FileUpload2 != null)
-                        {
-                            string extension = Path.GetExtension(FileUpload2.FileName);
-                            string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 2 + extension);
-                            string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
-                            if (System.IO.File.Exists(path))
-                            {
-                                System.IO.File.Delete(path);
-                            }
-                            FileUpload2.SaveAs(path);
-                            ViewBag.Image2 = fileName;
-                            Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 2);
-                        }
-						else
-						{
-							ViewBag.Image2 = tabImageCheval[1];
-						}
-
-                        if (FileUpload3 != null)
-                        {
-                            string extension = Path.GetExtension(FileUpload3.FileName);
-                            string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 3 + extension);
-                            string path = Path.Combine(Server.MapPath("~/Images/Cheval"), fileName);
-                            if (System.IO.File.Exists(path))
-                            {
-                                System.IO.File.Delete(path);
-                            }
-                            FileUpload3.SaveAs(path);
-                            ViewBag.Image3 = fileName;
-                            Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 3);
-                        }
-						else
-						{
-							ViewBag.Image3 = tabImageCheval[2];
-						}
-                    }
-                    else
-                    {
-                        ViewBag.NonReussi = "Erreur dans la modifcation du cheval !";
-                    }
+                    ViewBag.ErreurVide = "Tout les champs doivent être remplis et au moins une photo doit être choisi.";
                 }
             }
-            else
+            else if (!string.IsNullOrWhiteSpace(btn_delete))
             {
-                ViewBag.ErreurVide = "Tout les champs doivent être remplis et au moins une photo doit être choisi.";
+                if(Models.ClassLiaisonBD.SupprimerUnCheval(conn, int.Parse(TB_IDCheval)))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.NonReussi = "Suppression non réussite";
+                }
             }
             return View(new ImageModel());
         }
