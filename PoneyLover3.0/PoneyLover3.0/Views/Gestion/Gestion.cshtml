@@ -181,7 +181,8 @@
                             }
                             @Html.TextBox("TB_Update", @update, new { maxlength = 20, @class = "form-control", @placeholder = "Race du cheval", type = "hidden" })
                             @Html.TextBox("TB_IDCheval", @id, new { maxlength = 20, @class = "form-control", @placeholder = "Race du cheval", type = "hidden" })
-                            <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Enregistrer">
+                            <input type="submit" id="btn_save" name ="btn_save" class="btn btn-custom btn-lg btn-block" value="Enregistrer">
+                            <input type="submit" id="btn_delete" name ="btn_delete" class="btn btn-custom btn-lg btn-block" value="Supprimer">
                         </div>
                     }
                 </div>
