@@ -171,7 +171,8 @@ namespace PoneyLover3._0.Models
             do
             {
                 Random chiffrealatoire = new Random();
-                int aleatoire = chiffrealatoire.Next(0, nombre - 1);
+                int aleatoire = chiffrealatoire.Next(1, nombre);
+                aleatoire = aleatoire - 1;
 
                 chiffre = tab[aleatoire];
 
@@ -248,7 +249,7 @@ namespace PoneyLover3._0.Models
             conn.Close();
         }
 
-        public static void UpdateImageCheval(String NewGuidCheval, String IdCheval, SqlConnection conn, int Pos)
+        public static void UpdateImageCheval(String NewGuidCheval, int IdCheval, SqlConnection conn, int Pos)
         {
             NewGuidCheval = ReplaceRegex(NewGuidCheval);
 
@@ -481,7 +482,7 @@ namespace PoneyLover3._0.Models
                                                                 + " description = '" + Description + "', "
                                                                 + " emplacement = '" + Emplacement + "', "
                                                                 + " race = '" + Race + "', "
-                                                                + " discipline = '" + Discipline + "', "
+                                                                + " discipline = '" + Discipline + "'"
                                                                 + " where ID = " + ID);
                 sql.Connection = conn;
                 conn.Open();

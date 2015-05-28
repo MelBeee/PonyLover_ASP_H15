@@ -71,7 +71,7 @@
                             </div>
                             <div class="form-group">
                                 @{String DescriptionDuCheval = ViewBag.DescriptionCheval;}
-                                @Html.TextArea("TB_Description", DescriptionDuCheval, new { maxlength = 200, @class = "form-control", @placeholder = "Description", @Rows = "6" })
+                                @Html.TextArea("TB_Description", DescriptionDuCheval, new { maxlength = 500, @class = "form-control", @placeholder = "Description", @Rows = "6" })
                             </div>
                             <div class="form-group">
                                 @Html.TextBox("TB_Emplacement", null, new { maxlength = 20, @class = "form-control", @placeholder = "Emplacement du cheval" })
@@ -171,6 +171,16 @@
                                 </table>
                             </div>
                             <br />
+                            @{
+                                int id = 0;
+                                string update = ViewBag.Update;
+                                if(ViewBag.IdDuCheval != null)
+                                {
+                                    id = ViewBag.IdDuCheval;
+                                }
+                            }
+                            @Html.TextBox("TB_Update", @update, new { maxlength = 20, @class = "form-control", @placeholder = "Race du cheval", type = "hidden" })
+                            @Html.TextBox("TB_IDCheval", @id, new { maxlength = 20, @class = "form-control", @placeholder = "Race du cheval", type = "hidden" })
                             <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Enregistrer">
                         </div>
                     }

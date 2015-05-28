@@ -14,20 +14,19 @@ namespace PoneyLover3._0.Controllers
 {
     public class GestionController : Controller
     {
-        Boolean Update;
-
         public ActionResult Gestion(int? _idcheval)
         {
-            Update = false;
+            ViewBag.Update = "non";
             SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
 
             if (Session["Username"].ToString() == "" && !(bool)Session["UserValid"])
             {
                 return RedirectToAction("Index", "Home");
             }
-
+            ViewBag.IdDuCheval = 1;
             if (_idcheval != null)
             {
+                ViewBag.Update = "oui";
                 int ID = _idcheval.GetValueOrDefault();
                 ViewBag.IdDuCheval = ID;
                 String[] InfoCheval = Models.ClassLiaisonBD.GetInfoCheval(conn, ID);
@@ -53,7 +52,6 @@ namespace PoneyLover3._0.Controllers
                 {
                     ViewBag.Image3 = ImageCheval[2];
                 }
-                Update = true;
             }
             else
             {
@@ -73,13 +71,13 @@ namespace PoneyLover3._0.Controllers
         }
 
         [HttpPost]
-        public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1, HttpPostedFileBase FileUpload1, HttpPostedFileBase FileUpload2, HttpPostedFileBase FileUpload3)
+        public ActionResult Gestion(String TB_Nom, String TB_Description, String TB_Emplacement, String TB_Race, String rad1, HttpPostedFileBase FileUpload1, HttpPostedFileBase FileUpload2, HttpPostedFileBase FileUpload3, String TB_Update, String TB_IDCheval)
         {
             SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
 
             if (TB_Nom != "" && TB_Description != "" && TB_Emplacement != "" && TB_Race != "" && rad1 != "" && Session["UserName"].ToString() != "")
             {
-                if (!Update)
+                if (TB_Update == "non")
                 {
                     if (Models.ClassLiaisonBD.InsertionCheval(TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
                     {
@@ -150,7 +148,8 @@ namespace PoneyLover3._0.Controllers
                 }
                 else
                 {
-                    if (Models.ClassLiaisonBD.UpdateCheval(ViewBag.IdDuCheval, TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
+                    int idcheval = int.Parse(TB_IDCheval);
+                    if (Models.ClassLiaisonBD.UpdateCheval(idcheval, TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
                     {
                         ViewBag.Reussi = "Cheval Modifié !";
 
@@ -164,7 +163,8 @@ namespace PoneyLover3._0.Controllers
                                 System.IO.File.Delete(path);
                             }
                             FileUpload1.SaveAs(path);
-                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload1.FileName, ViewBag.IdDuCheval, conn, 1);
+                            ViewBag.Image1 = fileName;
+                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload1.FileName, int.Parse(TB_IDCheval), conn, 1);
                         }                         
                         if (FileUpload2 != null)
                         {
@@ -176,7 +176,8 @@ namespace PoneyLover3._0.Controllers
                                 System.IO.File.Delete(path);
                             }
                             FileUpload2.SaveAs(path);
-                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload2.FileName, ViewBag.IdDuCheval, conn, 2);
+                            ViewBag.Image2 = fileName;
+                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload2.FileName, int.Parse(TB_IDCheval), conn, 2);
                         }
                         if (FileUpload3 != null)
                         {
@@ -188,7 +189,8 @@ namespace PoneyLover3._0.Controllers
                                 System.IO.File.Delete(path);
                             }
                             FileUpload3.SaveAs(path);
-                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload3.FileName, ViewBag.IdDuCheval, conn, 3);
+                            ViewBag.Image3 = fileName;
+                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload3.FileName, int.Parse(TB_IDCheval), conn, 3);
                         }
                     }
                     else

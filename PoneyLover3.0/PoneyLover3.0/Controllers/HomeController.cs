@@ -13,6 +13,7 @@ namespace PoneyLover3._0.Controllers
 {
     public class HomeController : Controller
     {
+        bool FirstTime = true; 
         public ActionResult Index()
         {
             return View(new ImageModel());
@@ -21,19 +22,24 @@ namespace PoneyLover3._0.Controllers
         public void RandomMeAHorse()
         {
             SqlConnection conn = new SqlConnection(Session["DBPony"].ToString());
+            int idcheval = 1;
 
-            if (ViewBag.ID == null)
+            if (FirstTime)
             {
-                ViewBag.ID = 1;
+                FirstTime = false;
+                idcheval = Models.ClassLiaisonBD.TrouverDernierID(conn, "Cheval");
+            }
+            else
+            {
+                idcheval = Models.ClassLiaisonBD.TrouverIDHasard(conn, idcheval);
             }
 
-            ViewBag.ID = Models.ClassLiaisonBD.TrouverIDHasard(conn, ViewBag.ID);
-
             string[] c = new string[1];
-            c = Models.ClassLiaisonBD.GetInfoCheval(conn, ViewBag.ID);
+            c = Models.ClassLiaisonBD.GetInfoCheval(conn, idcheval);
             string[] tab = new string[1];
             tab = Models.ClassLiaisonBD.GetImageChevaux(conn, int.Parse(c[0]));
 
+            ViewBag.ID = idcheval;
             ViewBag.Nom = c[1];
             ViewBag.Description = c[2];
             ViewBag.Emplacement = c[3];
@@ -45,6 +51,7 @@ namespace PoneyLover3._0.Controllers
 
         public ActionResult About()
         {
+            FirstTime = true; 
             RandomMeAHorse();
 
             return View(new ImageModel());
@@ -53,6 +60,7 @@ namespace PoneyLover3._0.Controllers
         [HttpPost]
         public ActionResult About(string btn_random)
         {
+            FirstTime = false; 
             RandomMeAHorse();
 
             return View(new ImageModel());
