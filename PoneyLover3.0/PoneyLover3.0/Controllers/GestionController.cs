@@ -164,7 +164,7 @@ namespace PoneyLover3._0.Controllers
                             }
                             FileUpload1.SaveAs(path);
                             ViewBag.Image1 = fileName;
-                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload1.FileName, int.Parse(TB_IDCheval), conn, 1);
+                            Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 1);
                         }                         
                         if (FileUpload2 != null)
                         {
@@ -177,7 +177,7 @@ namespace PoneyLover3._0.Controllers
                             }
                             FileUpload2.SaveAs(path);
                             ViewBag.Image2 = fileName;
-                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload2.FileName, int.Parse(TB_IDCheval), conn, 2);
+                            Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 2);
                         }
                         if (FileUpload3 != null)
                         {
@@ -190,7 +190,7 @@ namespace PoneyLover3._0.Controllers
                             }
                             FileUpload3.SaveAs(path);
                             ViewBag.Image3 = fileName;
-                            Models.ClassLiaisonBD.UpdateImageCheval(FileUpload3.FileName, int.Parse(TB_IDCheval), conn, 3);
+                            Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 3);
                         }
                     }
                     else
