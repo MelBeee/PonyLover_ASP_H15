@@ -170,6 +170,7 @@ namespace PoneyLover3._0.Controllers
                         else
  					    {
 							  ViewBag.Image1 = tabImageCheval[0];
+
 						}
                         if (FileUpload2 != null)
                         {
@@ -217,6 +218,7 @@ namespace PoneyLover3._0.Controllers
             {
                 ViewBag.ErreurVide = "Tout les champs doivent être remplis et au moins une photo doit être choisi.";
             }
+			
             return View(new ImageModel());
         }
 
