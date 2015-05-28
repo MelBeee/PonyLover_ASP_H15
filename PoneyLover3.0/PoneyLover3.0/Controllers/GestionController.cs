@@ -83,7 +83,7 @@ namespace PoneyLover3._0.Controllers
                     {
                         ViewBag.Reussi = "Cheval ajouté !";
 
-                        if (FileUpload1 != null && FileUpload1.ContentLength > 0)
+                        if (FileUpload1 != null)
                         {
                             string extension = Path.GetExtension(FileUpload1.FileName);
                             string fileName = RemoveSpace(Session["UserName"].ToString() + TB_Nom + 1 + extension);
