@@ -497,5 +497,29 @@ namespace PoneyLover3._0.Models
 
             return resultat;
         }
+
+        public static bool SupprimerUnCheval (SqlConnection conn, int IDCheval)
+        {
+            bool supprimer = false;
+
+            SqlCommand sql2 = new SqlCommand("delete from photo where idcheval =" + IDCheval);
+            SqlCommand sql = new SqlCommand("delete from cheval where id =" + IDCheval);
+            sql2.Connection = conn;
+            sql.Connection = conn;
+
+            conn.Open();
+
+            int j = sql2.ExecuteNonQuery();
+            int i = sql.ExecuteNonQuery();
+
+            if(i > 0 && j > 0)
+            {
+                supprimer = true; 
+            }
+
+            conn.Close();
+
+            return supprimer; 
+        }
     }
 }
