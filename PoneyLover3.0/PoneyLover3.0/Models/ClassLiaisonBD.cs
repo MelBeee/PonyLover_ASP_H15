@@ -31,8 +31,6 @@ namespace PoneyLover3._0.Models
             return id;
         }
 
-
-
         public static string GetNomUsager(SqlConnection conn, int id)
         {
             string nomusager = "";

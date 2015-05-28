@@ -149,6 +149,7 @@ namespace PoneyLover3._0.Controllers
                 else
                 {
                     int idcheval = int.Parse(TB_IDCheval);
+					String [] tabImageCheval = Models.ClassLiaisonBD.GetImageChevaux(conn, idcheval);
                     if (Models.ClassLiaisonBD.UpdateCheval(idcheval, TB_Nom, TB_Description, TB_Emplacement, TB_Race, rad1, Session["UserName"].ToString(), conn))
                     {
                         ViewBag.Reussi = "Cheval Modifié !";
@@ -165,7 +166,11 @@ namespace PoneyLover3._0.Controllers
                             FileUpload1.SaveAs(path);
                             ViewBag.Image1 = fileName;
                             Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 1);
-                        }                         
+                        }
+                        else
+ 					    {
+							  ViewBag.Image1 = tabImageCheval[0];
+						}
                         if (FileUpload2 != null)
                         {
                             string extension = Path.GetExtension(FileUpload2.FileName);
@@ -179,6 +184,11 @@ namespace PoneyLover3._0.Controllers
                             ViewBag.Image2 = fileName;
                             Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 2);
                         }
+						else
+						{
+							ViewBag.Image2 = tabImageCheval[1];
+						}
+
                         if (FileUpload3 != null)
                         {
                             string extension = Path.GetExtension(FileUpload3.FileName);
@@ -192,6 +202,10 @@ namespace PoneyLover3._0.Controllers
                             ViewBag.Image3 = fileName;
                             Models.ClassLiaisonBD.UpdateImageCheval(fileName, int.Parse(TB_IDCheval), conn, 3);
                         }
+						else
+						{
+							ViewBag.Image3 = tabImageCheval[2];
+						}
                     }
                     else
                     {
